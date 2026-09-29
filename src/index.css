@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@keyframes window-open {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes window-close {
+  to {
+    opacity: 0;
+    transform: translateY(5px) scale(0.985);
+  }
+}
+
+@keyframes content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes menu-close {
+  to {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.985);
+  }
+}
+
+.window-frame-visible {
+  animation: window-open 180ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.window-frame-exit {
+  pointer-events: none;
+  animation: window-close 180ms ease-in both;
+}
+
+.window-content-enter {
+  animation: content-enter 160ms ease-out both;
+}
+
+.menu-panel-visible {
+  animation: menu-open 150ms ease-out both;
+}
+
+.menu-panel-exit {
+  pointer-events: none;
+  animation: menu-close 150ms ease-in both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .window-frame-visible,
+  .window-frame-exit,
+  .window-content-enter,
+  .menu-panel-visible,
+  .menu-panel-exit {
+    animation: none;
+  }
+}
+
+.desktop-shell[data-theme='dark-void'] .window-frame {
+  background-color: rgba(0, 0, 0, 0.76) !important;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.desktop-shell[data-theme='dark-void'] .window-content-surface {
+  background-color: rgba(0, 0, 0, 0.28) !important;
+}
+
+.desktop-shell[data-theme='midnight-navy'] .window-frame {
+  background-color: rgba(5, 22, 42, 0.8) !important;
+  border-color: rgba(96, 165, 250, 0.24);
+}
+
+.desktop-shell[data-theme='midnight-navy'] .window-content-surface {
+  background-color: rgba(6, 24, 46, 0.42) !important;
+}
+
+.desktop-shell[data-theme='obsidian'] .window-frame {
+  background-color: rgba(25, 27, 30, 0.82) !important;
+  border-color: rgba(203, 213, 225, 0.2);
+}
+
+.desktop-shell[data-theme='obsidian'] .window-content-surface {
+  background-color: rgba(30, 32, 35, 0.44) !important;
+}
+
+.desktop-shell[data-theme='graphite'] .window-frame {
+  background-color: rgba(39, 39, 37, 0.84) !important;
+  border-color: rgba(212, 212, 206, 0.2);
+}
+
+.desktop-shell[data-theme='graphite'] .window-content-surface {
+  background-color: rgba(45, 45, 42, 0.46) !important;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #000;
+    color: #f1f5f9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom sleek scrollbar for glass windows */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+

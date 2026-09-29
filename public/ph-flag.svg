@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" role="img" aria-label="Philippine flag">
+  <path fill="#0038a8" d="M0 0h24v6H0z" />
+  <path fill="#ce1126" d="M0 6h24v6H0z" />
+  <path fill="#fff" d="M0 0v12l10.4-6z" />
+  <circle cx="3.05" cy="6" r="1.05" fill="#fcd116" />
+  <path fill="#fcd116" d="m6.2 2.75.32.94h.99l-.8.58.31.94-.82-.58-.81.58.31-.94-.8-.58h.99zM6.2 8.05l.32.94h.99l-.8.58.31.94-.82-.58-.81.58.31-.94-.8-.58h.99zM1.95 5.38l.32.94h.99l-.8.58.31.94-.82-.58-.81.58.31-.94-.8-.58h.99z" />
+</svg>

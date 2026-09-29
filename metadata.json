@@ -1,0 +1,6 @@
+{
+  "name": "Spatial OS — Portfolio Workstation",
+  "description": "An interactive single-screen WebOS developer portfolio featuring floating glass windows, multi-app workstation, project showcases, interactive resume, and customizable desktop environment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
