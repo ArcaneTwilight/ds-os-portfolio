@@ -19,12 +19,14 @@ interface CustomizerAppProps {
   settings: SystemSettings;
   onUpdateSettings: (newSettings: Partial<SystemSettings>) => void;
   onResetSettings: () => void;
+  onExternalLink: (url: string) => void;
 }
 
 export const CustomizerApp: React.FC<CustomizerAppProps> = ({
   settings,
   onUpdateSettings,
-  onResetSettings
+  onResetSettings,
+  onExternalLink
 }) => {
   const [showMusicAttribution, setShowMusicAttribution] = useState(false);
 
@@ -206,6 +208,34 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
         <h4 className="text-xs font-semibold text-white mb-2">Desktop Physics & Ambiance</h4>
 
         <div className="divide-y divide-white/5">
+          <div className="flex items-center justify-between py-2.5">
+            <div className="flex items-center gap-2.5">
+              {settings.soundEffectsEnabled !== false ? (
+                <Volume2 className="w-4 h-4 text-amber-300" />
+              ) : (
+                <VolumeX className="w-4 h-4 text-slate-400" />
+              )}
+              <div>
+                <div className="text-xs font-medium text-white">Sound Effects</div>
+                <div className="text-[11px] text-slate-400">Interface clicks and window chimes</div>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => onUpdateSettings({ soundEffectsEnabled: settings.soundEffectsEnabled === false })}
+              className={`w-11 h-6 rounded-full transition-colors relative p-0.5 ${
+                settings.soundEffectsEnabled !== false ? 'bg-amber-600' : 'bg-white/20'
+              }`}
+              role="switch"
+              aria-checked={settings.soundEffectsEnabled !== false}
+              aria-label="Sound effects"
+            >
+              <div className={`w-5 h-5 rounded-full bg-white transition-transform ${
+                settings.soundEffectsEnabled !== false ? 'translate-x-5' : 'translate-x-0'
+              }`} />
+            </button>
+          </div>
+
           {/* Dynamic Particles */}
           <div className="flex items-center justify-between py-2.5">
             <div className="flex items-center gap-2.5">
@@ -290,7 +320,7 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
             {showMusicAttribution && (
               <div className="ml-6 rounded-md border border-white/10 bg-black/20 px-3 py-2 text-[11px] leading-5 text-slate-300">
                 <div>Music track: honey jam by massobeats</div>
-                <div>Source: <a href="https://freetouse.com/music" target="_blank" rel="noreferrer" className="text-sky-300 hover:underline">https://freetouse.com/music</a></div>
+                <div>Source: <button type="button" onClick={() => onExternalLink('https://freetouse.com/music')} className="text-sky-300 hover:underline">https://freetouse.com/music</button></div>
                 <div>Vlog Music for Video (Free Download)</div>
               </div>
             )}

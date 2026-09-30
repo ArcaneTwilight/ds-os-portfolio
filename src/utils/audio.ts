@@ -4,6 +4,11 @@ class SoundManager {
   private ctx: AudioContext | null = null;
   private ambientAudio: HTMLAudioElement | null = null;
   private ambientVolume = 0.35;
+  private soundEffectsEnabled = true;
+
+  setSoundEffectsEnabled(enabled: boolean) {
+    this.soundEffectsEnabled = enabled;
+  }
 
   private initContext() {
     if (!this.ctx) {
@@ -19,6 +24,7 @@ class SoundManager {
 
   // Play subtle UI tap/focus click
   playClick(pitch: number = 880, duration: number = 0.04) {
+    if (!this.soundEffectsEnabled) return;
     try {
       this.initContext();
       if (!this.ctx) return;
@@ -30,7 +36,7 @@ class SoundManager {
       osc.frequency.setValueAtTime(pitch, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(pitch * 0.5, this.ctx.currentTime + duration);
 
-      gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
 
       osc.connect(gain);
@@ -45,6 +51,7 @@ class SoundManager {
 
   // Window open chime
   playWindowOpen() {
+    if (!this.soundEffectsEnabled) return;
     try {
       this.initContext();
       if (!this.ctx) return;
@@ -57,7 +64,7 @@ class SoundManager {
       osc.frequency.setValueAtTime(440, now);
       osc.frequency.exponentialRampToValueAtTime(660, now + 0.08);
 
-      gain.gain.setValueAtTime(0.02, now);
+      gain.gain.setValueAtTime(0.04, now);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
 
       osc.connect(gain);

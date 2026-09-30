@@ -54,6 +54,14 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
 
   const [isResizing, setIsResizing] = useState(false);
   const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 });
+  const [isSmallViewport, setIsSmallViewport] = useState(() => window.innerWidth <= 1024);
+  const viewportMaximized = isMaximized || isSmallViewport;
+
+  useEffect(() => {
+    const updateViewport = () => setIsSmallViewport(window.innerWidth <= 1024);
+    window.addEventListener('resize', updateViewport);
+    return () => window.removeEventListener('resize', updateViewport);
+  }, []);
 
   useEffect(() => {
     if (isVisible) {
@@ -62,9 +70,9 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
     }
     if (!shouldRender) return;
 
-    const timeoutId = window.setTimeout(() => setShouldRender(false), 180);
+    const timeoutId = window.setTimeout(() => setShouldRender(false), isMinimized ? 260 : 220);
     return () => window.clearTimeout(timeoutId);
-  }, [isVisible, shouldRender]);
+  }, [isVisible, isMinimized, shouldRender]);
 
   // Blur class mapping
   const getBlurClass = () => {
@@ -81,7 +89,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
 
   // Dragging handlers
   const handleTitleMouseDown = (e: React.MouseEvent) => {
-    if (isMaximized) return;
+    if (viewportMaximized) return;
     if ((e.target as HTMLElement).closest('button')) return; // Ignore clicks on window control buttons
 
     onFocus();
@@ -95,7 +103,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
 
   // Resizing handlers
   const handleResizeMouseDown = (e: React.MouseEvent) => {
-    if (isMaximized) return;
+    if (viewportMaximized) return;
     e.stopPropagation();
     e.preventDefault();
     onFocus();
@@ -143,15 +151,16 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
 
   if (!shouldRender && !isVisible) return null;
 
-  const style: React.CSSProperties = isMaximized
+  const style: React.CSSProperties = viewportMaximized
     ? {
         position: 'fixed',
-        top: 44,
-        left: 8,
-        right: 8,
+        top: isSmallViewport ? 40 : 44,
+        left: isSmallViewport ? 0 : 8,
+        right: isSmallViewport ? 0 : 8,
+        bottom: isSmallViewport ? 76 : undefined,
         zIndex,
-        width: 'calc(100vw - 16px)',
-        height: 'calc(100vh - 132px)'
+        width: isSmallViewport ? '100vw' : 'calc(100vw - 16px)',
+        height: isSmallViewport ? 'calc(100dvh - 132px)' : 'calc(100vh - 132px)'
       }
     : {
         position: 'fixed',
@@ -176,7 +185,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
         isDragging || isResizing ? '' : 'transition-[top,left,right,width,height,box-shadow,border-color] duration-200 ease-out'
       } ${
         isDragging ? 'opacity-95 ring-1 ring-sky-400/40' : ''
-      }`}
+      } ${isMinimized ? 'window-frame-minimized' : ''}`}
     >
       {/* Title Bar */}
       <div
@@ -221,11 +230,11 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
               soundManager.playClick(600, 0.03);
               onMaximizeToggle();
             }}
-            title={isMaximized ? 'Restore' : 'Maximize'}
-            className="w-3.5 h-3.5 rounded-full bg-emerald-500/80 hover:bg-emerald-500 flex items-center justify-center text-emerald-950 transition-colors group/btn shadow-xs"
-            aria-label="Maximize Window"
+            title={viewportMaximized ? 'Restore' : 'Maximize'}
+            className="window-maximize-control w-3.5 h-3.5 rounded-full bg-emerald-500/80 hover:bg-emerald-500 flex items-center justify-center text-emerald-950 transition-colors group/btn shadow-xs"
+            aria-label={viewportMaximized ? 'Restore Window' : 'Maximize Window'}
           >
-            {isMaximized ? (
+            {viewportMaximized ? (
               <Copy className="w-2 h-2 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
             ) : (
               <Square className="w-2 h-2 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
@@ -253,7 +262,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
       </div>
 
       {/* Corner Resize Handle */}
-      {!isMaximized && (
+      {!viewportMaximized && (
         <div
           onMouseDown={handleResizeMouseDown}
           className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize flex items-end justify-end p-0.5 select-none opacity-40 hover:opacity-100 transition-opacity"

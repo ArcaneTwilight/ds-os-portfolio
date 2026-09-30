@@ -13,6 +13,8 @@ import {
   FolderGit2, 
   Terminal, 
   Sparkles,
+  UserRound,
+  Play,
   LucideIcon
 } from 'lucide-react';
 import { 
@@ -30,6 +32,8 @@ import { TopBar } from './components/desktop/TopBar';
 import { Dock } from './components/desktop/Dock';
 import { SpatialMenu } from './components/desktop/SpatialMenu';
 import { WindowFrame } from './components/window/WindowFrame';
+import { LoadingScreen } from './components/loading/LoadingScreen';
+import { ExternalLinkModal } from './components/ui/ExternalLinkModal';
 
 // Apps
 import { AboutApp } from './components/apps/AboutApp';
@@ -40,6 +44,8 @@ import { ResumeApp } from './components/apps/ResumeApp';
 import { CustomizerApp } from './components/apps/CustomizerApp';
 import { FilesApp } from './components/apps/FilesApp';
 import { TerminalApp } from './components/apps/TerminalApp';
+import { PersonalApp } from './components/apps/PersonalApp';
+import { WalkthroughApp } from './components/apps/WalkthroughApp';
 
 const STORAGE_KEY = 'ds_os_settings_v3';
 const LEGACY_STORAGE_KEY = 'ds_os_settings_v2';
@@ -50,6 +56,7 @@ const DEFAULT_SETTINGS: SystemSettings = {
   glassBlur: 'medium',
   contrast: 100,
   particles: true,
+  soundEffectsEnabled: true,
   ambientAudio: true,
   ambientVolume: 35,
   showGrid: true
@@ -111,6 +118,20 @@ const APP_META: Record<AppId, { title: string; icon: LucideIcon; color: string; 
     color: 'text-purple-400',
     defaultSize: { width: 720, height: 580 },
     minSize: { width: 440, height: 380 }
+  },
+  personal: {
+    title: 'Personal // Beyond the Work',
+    icon: UserRound,
+    color: 'text-rose-400',
+    defaultSize: { width: 820, height: 600 },
+    minSize: { width: 460, height: 360 }
+  },
+  walkthrough: {
+    title: 'Quick Walkthrough // Deevann Shrestha',
+    icon: Play,
+    color: 'text-lime-400',
+    defaultSize: { width: 780, height: 560 },
+    minSize: { width: 440, height: 340 }
   }
 };
 
@@ -122,7 +143,9 @@ const DESKTOP_ICONS: DesktopIconItem[] = [
   { id: 'icon-files', title: 'Files', appId: 'files', type: 'folder', iconName: 'files' },
   { id: 'icon-resume', title: 'Resume.pdf', appId: 'resume', type: 'file', iconName: 'resume' },
   { id: 'icon-terminal', title: 'Terminal', appId: 'terminal', type: 'app', iconName: 'terminal' },
-  { id: 'icon-customizer', title: 'Settings', appId: 'customizer', type: 'app', iconName: 'customizer' }
+  { id: 'icon-customizer', title: 'Settings', appId: 'customizer', type: 'app', iconName: 'customizer' },
+  { id: 'icon-personal', title: 'Personal', appId: 'personal', type: 'app', iconName: 'personal' },
+  { id: 'icon-walkthrough', title: 'Quick Walkthrough', appId: 'walkthrough', type: 'app', iconName: 'walkthrough' }
 ];
 
 export default function App() {
@@ -179,7 +202,7 @@ export default function App() {
         title: meta.title,
         isOpen: isDefaultOpen,
         isMinimized: false,
-        isMaximized: false,
+        isMaximized: screenWidth <= 1024,
         zIndex: isDefaultOpen ? 10 : 1,
         position: { x: posX, y: posY },
         size: { width, height },
@@ -194,6 +217,33 @@ export default function App() {
   const [selectedIconId, setSelectedIconId] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [highestZIndex, setHighestZIndex] = useState<number>(15);
+  const [loadingExiting, setLoadingExiting] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
+  const [pendingExternalUrl, setPendingExternalUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const maximizeForTablet = () => {
+      if (window.innerWidth > 1024) return;
+      setWindows((previous) => {
+        const updates = Object.fromEntries(
+          Object.entries(previous).map(([id, state]) => [id, state.isMaximized ? state : { ...state, isMaximized: true }])
+        ) as Record<AppId, WindowState>;
+        return updates;
+      });
+    };
+    maximizeForTablet();
+    window.addEventListener('resize', maximizeForTablet);
+    return () => window.removeEventListener('resize', maximizeForTablet);
+  }, []);
+
+  useEffect(() => {
+    const exitTimer = window.setTimeout(() => setLoadingExiting(true), 2200);
+    const hideTimer = window.setTimeout(() => setShowLoading(false), 2700);
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(hideTimer);
+    };
+  }, []);
 
   // Synchronize settings with localStorage
   useEffect(() => {
@@ -228,6 +278,10 @@ export default function App() {
   useEffect(() => {
     soundManager.setAmbientVolume(settings.ambientVolume / 100);
   }, [settings.ambientVolume]);
+
+  useEffect(() => {
+    soundManager.setSoundEffectsEnabled(settings.soundEffectsEnabled !== false);
+  }, [settings.soundEffectsEnabled]);
 
   const handleUpdateSettings = (newSettings: Partial<SystemSettings>) => {
     setSettings((prev) => ({ ...prev, ...newSettings }));
@@ -273,6 +327,7 @@ export default function App() {
             ...current,
             isOpen: true,
             isMinimized: false,
+            isMaximized: window.innerWidth <= 1024 || current.isMaximized,
             zIndex: nextZ
           }
         };
@@ -402,6 +457,7 @@ export default function App() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         onOpenApp={openApp}
+        onExternalLink={(url) => setPendingExternalUrl(url)}
       />
 
       {/* 4. Desktop Grid of Icons */}
@@ -433,7 +489,7 @@ export default function App() {
           onUpdatePosition={(pos) => updatePosition('about', pos)}
           onUpdateSize={(size) => updateSize('about', size)}
         >
-          <AboutApp />
+          <AboutApp onExternalLink={(url) => setPendingExternalUrl(url)} onOpenApp={openApp} />
       </WindowFrame>
 
       <WindowFrame
@@ -448,7 +504,7 @@ export default function App() {
           onUpdatePosition={(pos) => updatePosition('projects', pos)}
           onUpdateSize={(size) => updateSize('projects', size)}
         >
-          <ProjectsApp />
+          <ProjectsApp onExternalLink={(url) => setPendingExternalUrl(url)} />
       </WindowFrame>
 
       <WindowFrame
@@ -525,6 +581,7 @@ export default function App() {
         >
           <TerminalApp
             onOpenApp={openApp}
+            onExternalLink={(url) => setPendingExternalUrl(url)}
             onSetWallpaper={(wp: WallpaperId) => handleUpdateSettings({ wallpaper: wp })}
           />
       </WindowFrame>
@@ -545,7 +602,38 @@ export default function App() {
             settings={settings}
             onUpdateSettings={handleUpdateSettings}
             onResetSettings={handleResetSettings}
+            onExternalLink={(url) => setPendingExternalUrl(url)}
           />
+      </WindowFrame>
+
+      <WindowFrame
+          {...windows.personal}
+          icon={APP_META.personal.icon}
+          iconColor={APP_META.personal.color}
+          glassBlur={settings.glassBlur}
+          onFocus={() => focusWindow('personal')}
+          onClose={() => closeWindow('personal')}
+          onMinimize={() => minimizeWindow('personal')}
+          onMaximizeToggle={() => toggleMaximizeWindow('personal')}
+          onUpdatePosition={(pos) => updatePosition('personal', pos)}
+          onUpdateSize={(size) => updateSize('personal', size)}
+        >
+          <PersonalApp />
+      </WindowFrame>
+
+      <WindowFrame
+          {...windows.walkthrough}
+          icon={APP_META.walkthrough.icon}
+          iconColor={APP_META.walkthrough.color}
+          glassBlur={settings.glassBlur}
+          onFocus={() => focusWindow('walkthrough')}
+          onClose={() => closeWindow('walkthrough')}
+          onMinimize={() => minimizeWindow('walkthrough')}
+          onMaximizeToggle={() => toggleMaximizeWindow('walkthrough')}
+          onUpdatePosition={(pos) => updatePosition('walkthrough', pos)}
+          onUpdateSize={(size) => updateSize('walkthrough', size)}
+        >
+          <WalkthroughApp />
       </WindowFrame>
 
       {/* 6. Centered Floating Dock (Files, Terminal, Settings pinned; open windows shown dynamically) */}
@@ -554,6 +642,17 @@ export default function App() {
         activeWindowId={activeWindowId}
         onAppClick={handleDockAppClick}
       />
+      {pendingExternalUrl && (
+        <ExternalLinkModal
+          url={pendingExternalUrl}
+          onCancel={() => setPendingExternalUrl(null)}
+          onContinue={() => {
+            window.open(pendingExternalUrl, '_blank', 'noopener,noreferrer');
+            setPendingExternalUrl(null);
+          }}
+        />
+      )}
+      {showLoading && <LoadingScreen exiting={loadingExiting} />}
     </div>
   );
 }

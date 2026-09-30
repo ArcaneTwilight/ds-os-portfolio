@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Replaceable gallery placeholder">
+  <defs><linearGradient id="dusk" x2="0" y2="1"><stop stop-color="#364b63"/><stop offset="1" stop-color="#d88970"/></linearGradient></defs>
+  <rect width="800" height="600" fill="url(#dusk)"/><circle cx="150" cy="130" r="54" fill="#ffe4b1" opacity=".85"/><path d="M0 400 180 245l120 110 190-210 310 270v185H0Z" fill="#394a4c"/><path d="m0 475 190-108 185 100 155-133 270 158v108H0Z" fill="#263b40"/><path d="M0 535q160-45 330 0t470-14v79H0Z" fill="#1f3035"/><text x="40" y="555" fill="#fff2e6" font-family="sans-serif" font-size="20" opacity=".8">Gallery image placeholder 03</text>
+</svg>

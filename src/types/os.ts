@@ -6,7 +6,9 @@ export type AppId =
   | 'resume'
   | 'customizer'
   | 'files'
-  | 'terminal';
+  | 'terminal'
+  | 'personal'
+  | 'walkthrough';
 
 export type WallpaperId = 'aurora' | 'cyberpunk' | 'deep-space' | 'slate' | 'sunset';
 
@@ -44,6 +46,7 @@ export interface SystemSettings {
   glassBlur: BlurLevel;
   contrast: number; // 80 - 120
   particles: boolean;
+  soundEffectsEnabled?: boolean;
   ambientAudio: boolean;
   ambientVolume: number;
   showGrid: boolean;
@@ -86,6 +89,12 @@ export interface TechItem {
   description: string;
   iconName: string;
   featured?: boolean;
+}
+
+export interface PersonalData {
+  photos: { src: string; alt: string; caption: string }[];
+  spotifyPlaylistUrl: string;
+  youtubePlaylistUrl: string;
 }
 
 export interface FileItem {

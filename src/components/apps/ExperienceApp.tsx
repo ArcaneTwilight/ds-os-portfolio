@@ -52,12 +52,12 @@ export const ExperienceApp: React.FC = () => {
       </div>
 
       {/* Career Timeline */}
-      <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/15">
-        {filteredExperience.map((item) => {
+      <div key={selectedCategory} className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/15">
+        {filteredExperience.map((item, index) => {
           const isExpanded = expandedId === item.id;
 
           return (
-            <div key={item.id} className="relative group">
+            <div key={item.id} className="experience-card-enter relative group" style={{ animationDelay: `${index * 60}ms` }}>
               {/* Timeline Node dot */}
               <div
                 onClick={() => setExpandedId(isExpanded ? '' : item.id)}

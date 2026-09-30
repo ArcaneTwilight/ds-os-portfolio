@@ -5,6 +5,7 @@ import { DEVELOPER_PROFILE, PROJECTS_DATA, TECH_STACK_DATA, VIRTUAL_FILES } from
 interface TerminalAppProps {
   onOpenApp: (appId: AppId) => void;
   onSetWallpaper?: (wp: WallpaperId) => void;
+  onExternalLink: (url: string) => void;
 }
 
 interface CommandHistoryItem {
@@ -13,7 +14,7 @@ interface CommandHistoryItem {
   output: React.ReactNode;
 }
 
-export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpaper }) => {
+export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpaper, onExternalLink }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<CommandHistoryItem[]>([
     {
@@ -64,7 +65,7 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
             <div><span className="text-emerald-400 font-mono w-28 inline-block">projects</span> — List flagship engineering works</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">experience</span> — View career trajectory and roles</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">skills</span> — Enumerate tech stack and proficiencies</div>
-            <div><span className="text-emerald-400 font-mono w-28 inline-block">open [app]</span> — Launch window (about|projects|experience|resume|customizer|files)</div>
+            <div><span className="text-emerald-400 font-mono w-28 inline-block">open [app|url]</span> — Launch an app or request an external link (about|projects|experience|resume|customizer|files|personal|walkthrough)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">cat [file]</span> — Print file content (e.g. cat about.txt)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">wallpaper [name]</span> — Change wallpaper (aurora|cyberpunk|deep-space|slate|sunset)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">whoami</span> — Print current active user</div>
@@ -129,8 +130,13 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
         if (!arg) {
           output = <div className="text-rose-400">Error: Please specify target app. Usage: open &lt;about|projects|experience|resume|customizer|files&gt;</div>;
         } else {
+          if (/^https?:\/\//i.test(arg)) {
+            onExternalLink(arg);
+            output = <div className="text-amber-300">External link confirmation requested: {arg}</div>;
+            break;
+          }
           const target = arg.toLowerCase() as AppId;
-          const validApps: AppId[] = ['about', 'projects', 'experience', 'resume', 'customizer', 'files'];
+          const validApps: AppId[] = ['about', 'projects', 'experience', 'resume', 'customizer', 'files', 'personal', 'walkthrough'];
           if (validApps.includes(target)) {
             onOpenApp(target);
             output = <div className="text-emerald-400">Launching application: {target}...</div>;

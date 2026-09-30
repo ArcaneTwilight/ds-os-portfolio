@@ -59,11 +59,7 @@ export const TechStackApp: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
-                selectedCategory === cat
-                  ? 'bg-white/20 text-white shadow-xs'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
+              className={`tech-filter-pill ${selectedCategory === cat ? 'tech-filter-active' : ''}`}
             >
               {cat}
             </button>
@@ -83,43 +79,40 @@ export const TechStackApp: React.FC = () => {
       </div>
 
       {/* Tech Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredTech.map((item) => {
+      <div key={selectedCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredTech.map((item, index) => {
           const Icon = TECH_ICON_MAP[item.iconName] || Code;
 
           return (
             <div
               key={item.id}
-              className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/8 transition-all duration-200 flex flex-col justify-between shadow-md"
+              className="tech-card-enter flex min-h-[180px] flex-col rounded-2xl border border-white/10 bg-white/5 p-4 shadow-md transition-all duration-200 hover:border-white/20 hover:bg-white/8"
+              style={{ animationDelay: `${index * 45}ms` }}
             >
-              <div>
-                {/* Header */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-amber-400">
-                      <Icon className="w-4 h-4" />
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <div className="flex min-w-0 items-center gap-2.5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-amber-400">
+                      <Icon className="h-5 w-5 shrink-0" />
                     </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-white">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="break-words text-sm font-semibold text-white">
                         {item.name}
                       </h4>
-                      <span className="text-[10px] uppercase tracking-wider text-slate-400">
-                        {item.category}
-                      </span>
                     </div>
-                  </div>
-
-                  <span className="text-xs font-mono text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">
-                    {item.experienceYears}y exp
-                  </span>
                 </div>
 
-                {/* Description */}
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                  {item.description}
-                </p>
+                <span className="tech-years-pill shrink-0">
+                  {item.experienceYears === 3 ? '3+ Yrs' : `${item.experienceYears} Yrs`}
+                </span>
               </div>
 
+              <p className="mb-3 text-xs leading-relaxed text-slate-300">
+                {item.description}
+              </p>
+
+              <span className="tech-category-pill mt-auto self-start">
+                {item.category}
+              </span>
             </div>
           );
         })}

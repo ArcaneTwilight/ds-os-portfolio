@@ -13,7 +13,7 @@ import {
 import { PROJECTS_DATA } from '../../data/portfolioData';
 import { ProjectItem } from '../../types/os';
 
-export const ProjectsApp: React.FC = () => {
+export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = ({ onExternalLink }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
@@ -45,26 +45,24 @@ export const ProjectsApp: React.FC = () => {
 
           <div className="flex items-center gap-3">
             {activeProject.githubUrl && (
-              <a
-                href={activeProject.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => onExternalLink(activeProject.githubUrl!)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-xs text-slate-200 transition-colors"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>Source Code</span>
-              </a>
+              </button>
             )}
             {activeProject.liveUrl && (
-              <a
-                href={activeProject.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => onExternalLink(activeProject.liveUrl!)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500/20 border border-sky-400/30 hover:bg-sky-500/30 text-xs text-sky-200 font-medium transition-colors"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Launch Demo</span>
-              </a>
+              </button>
             )}
           </div>
         </div>
@@ -192,11 +190,7 @@ export const ProjectsApp: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
-                selectedCategory === cat
-                  ? 'bg-white/20 text-white shadow-xs'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
+              className={`tech-filter-pill ${selectedCategory === cat ? 'tech-filter-active' : ''}`}
             >
               {cat}
             </button>
@@ -231,12 +225,13 @@ export const ProjectsApp: React.FC = () => {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProjects.map((project) => (
+        <div key={selectedCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredProjects.map((project, index) => (
             <div
               key={project.id}
               onClick={() => setActiveProject(project)}
-              className="group flex flex-col justify-between p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl relative overflow-hidden"
+              className="project-card-enter group flex flex-col justify-between p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl relative overflow-hidden"
+              style={{ animationDelay: `${index * 55}ms` }}
             >
               {/* Subtle accent glow top border */}
               <div

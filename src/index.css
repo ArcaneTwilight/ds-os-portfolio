@@ -3,7 +3,7 @@
 @keyframes window-open {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.985);
+    transform: translateY(12px) scale(0.94);
   }
   to {
     opacity: 1;
@@ -14,7 +14,14 @@
 @keyframes window-close {
   to {
     opacity: 0;
-    transform: translateY(5px) scale(0.985);
+    transform: translateY(10px) scale(0.97);
+  }
+}
+
+@keyframes window-minimize {
+  to {
+    opacity: 0;
+    transform: translateY(34vh) scale(0.38);
   }
 }
 
@@ -49,12 +56,184 @@
 
 .window-frame-visible {
   animation: window-open 180ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  transform-origin: center;
+  animation: window-open 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .window-frame-exit {
   pointer-events: none;
-  animation: window-close 180ms ease-in both;
+  transform-origin: center;
+  animation: window-close 220ms cubic-bezier(0.4, 0, 1, 1) both;
 }
+
+.window-frame-minimized {
+  pointer-events: none;
+  transform-origin: bottom center;
+  animation: window-minimize 250ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.tech-filter-pill,
+.tech-category-pill,
+.tech-years-pill,
+.tech-proficiency-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(241, 245, 249, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14), inset 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.tech-filter-pill {
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.38rem 0.78rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(203, 213, 225, 0.85);
+}
+
+.tech-filter-pill:hover,
+.tech-category-pill:hover,
+.tech-years-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.tech-filter-active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.tech-category-pill {
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+}
+
+.tech-years-pill {
+  border-radius: 999px;
+  padding: 0.28rem 0.58rem;
+  color: #fde68a;
+  font: 500 0.7rem ui-monospace, monospace;
+  white-space: nowrap;
+}
+
+.tech-card-enter,
+.project-card-enter,
+.experience-card-enter {
+  animation: content-enter 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.external-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(1, 5, 10, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: loading-enter 160ms ease-out both;
+}
+
+.external-modal {
+  width: min(440px, 100%);
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(22, 29, 37, 0.84);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), inset 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  animation: window-open 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.external-url {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  padding: 0.7rem 0.8rem;
+  background: rgba(0, 0, 0, 0.24);
+  color: #bae6fd;
+  font: 11px/1.5 ui-monospace, monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.personal-section,
+.music-embed-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(12px);
+}
+
+.personal-photo img {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.music-platform {
+  min-height: 34px;
+  border-radius: 8px;
+  padding: 0.35rem 0.8rem;
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.music-platform-active { background: rgba(255, 255, 255, 0.17); color: white; }
+
+.walkthrough {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 28px clamp(18px, 5vw, 56px) 72px;
+  background: radial-gradient(ellipse at 12% 15%, rgba(14, 165, 233, 0.11), transparent 43%), radial-gradient(ellipse at 88% 78%, rgba(16, 185, 129, 0.1), transparent 42%);
+}
+.walkthrough:focus { outline: none; }
+.walkthrough-orbit {
+  position: absolute;
+  top: 12%;
+  right: 10%;
+  width: 210px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(186, 230, 253, 0.08);
+  border-radius: 50%;
+  box-shadow: 0 0 0 32px rgba(186, 230, 253, 0.025), 0 0 0 64px rgba(186, 230, 253, 0.018);
+  pointer-events: none;
+}
+.walkthrough-slide { position: relative; z-index: 1; animation: content-enter 260ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.walkthrough-card {
+  min-height: 150px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  animation: content-enter 300ms ease-out both;
+}
+.walkthrough-career { display: flex; gap: 12px; align-items: flex-start; animation: content-enter 260ms ease-out both; }
+.career-dot { width: 9px; height: 9px; margin-top: 4px; flex: 0 0 auto; border: 2px solid #6ee7b7; border-radius: 50%; box-shadow: 0 0 10px rgba(110, 231, 183, 0.35); }
+.walkthrough-skill { border: 1px solid rgba(186, 230, 253, 0.2); border-radius: 999px; padding: 0.55rem 0.85rem; background: rgba(125, 211, 252, 0.09); color: #e0f2fe; font-size: 0.8rem; animation: content-enter 240ms ease-out both; }
+.walkthrough-footer { position: absolute; z-index: 1; right: 18px; bottom: 16px; left: 18px; display: flex; align-items: center; gap: 10px; }
+.walkthrough-control { display: grid; width: 36px; height: 36px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 10px; background: rgba(255, 255, 255, 0.07); color: #e2e8f0; transition: background 150ms ease; }
+.walkthrough-control:hover { background: rgba(255, 255, 255, 0.15); }
+.walkthrough-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.28); transition: width 180ms ease, background 180ms ease; }
+.walkthrough-dot-active { width: 22px; background: #7dd3fc; }
 
 .window-content-enter {
   animation: content-enter 160ms ease-out both;
@@ -69,12 +248,143 @@
   animation: menu-close 150ms ease-in both;
 }
 
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: rgba(4, 10, 16, 0.58);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  animation: loading-enter 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.loading-screen-exit {
+  pointer-events: none;
+  animation: loading-exit 500ms ease-in both;
+}
+
+.loading-panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, calc(100vw - 36px));
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(14, 22, 30, 0.68);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48), inset 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+}
+
+.loading-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  border-radius: 13px;
+  color: #bae6fd;
+  background: linear-gradient(145deg, rgba(14, 165, 233, 0.32), rgba(16, 185, 129, 0.18));
+  font: 700 13px ui-monospace, monospace;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.2);
+}
+
+.loading-progress {
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loading-progress span {
+  display: block;
+  width: 38%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #34d399, #38bdf8);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.75);
+  animation: loading-progress 2.1s cubic-bezier(0.35, 0, 0.2, 1) forwards;
+}
+
+.loading-dots { display: flex; gap: 4px; }
+.loading-dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  animation: loading-pulse 900ms ease-in-out infinite alternate;
+}
+.loading-dots i:nth-child(2) { animation-delay: 150ms; }
+.loading-dots i:nth-child(3) { animation-delay: 300ms; }
+.loading-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+  animation: loading-drift 5s ease-in-out infinite alternate;
+}
+.loading-glow-one { top: 18%; left: 18%; background: #0ea5e9; }
+.loading-glow-two { right: 16%; bottom: 12%; background: #10b981; animation-delay: -2s; }
+
+@keyframes loading-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes loading-exit { to { opacity: 0; visibility: hidden; } }
+@keyframes loading-progress { to { width: 100%; } }
+@keyframes loading-pulse { to { opacity: 0.25; transform: scale(0.75); } }
+@keyframes loading-drift { to { transform: translate(28px, -18px) scale(1.12); } }
+
+@media (max-width: 1024px) {
+  .window-frame { border-radius: 0.75rem; }
+  .window-maximize-control { display: none; }
+  .window-frame .window-content-surface { overscroll-behavior: contain; }
+  .menu-panel { width: min(22rem, calc(100vw - 1.5rem)); max-height: calc(100dvh - 5rem); }
+}
+
+@media (max-width: 768px) {
+  .desktop-shell > main { display: none; }
+  .window-frame { border-radius: 0; }
+  .window-frame > div:first-child { min-height: 44px; }
+  .dock-items, .dock-container { gap: 0.25rem; }
+  header.fixed { height: 44px; }
+  .walkthrough { padding: 20px 18px 72px; }
+  .walkthrough-orbit { right: -72px; }
+  .personal-section { padding: 12px; }
+  .loading-panel { padding: 22px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .window-frame-visible,
   .window-frame-exit,
   .window-content-enter,
   .menu-panel-visible,
   .menu-panel-exit {
+    animation: none;
+    .window-frame-minimized,
+    .tech-card-enter,
+    .project-card-enter,
+    .experience-card-enter,
+    .walkthrough-slide,
+    .walkthrough-card,
+    .walkthrough-career,
+    .walkthrough-skill {
+      animation: none;
+    }
+    .tech-filter-pill,
+    .tech-category-pill,
+    .tech-years-pill,
+    .walkthrough-dot,
+    .walkthrough-control {
+      transition: none;
+    }
+  }
+  .loading-screen,
+  .loading-screen-exit,
+  .loading-progress span,
+  .loading-dots i,
+  .loading-glow {
     animation: none;
   }
 }

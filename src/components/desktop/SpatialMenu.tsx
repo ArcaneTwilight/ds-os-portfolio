@@ -12,7 +12,9 @@ import {
   Info, 
   Palette, 
   Sparkles, 
-  ExternalLink 
+  ExternalLink,
+  UserRound,
+  Play
 } from 'lucide-react';
 import { AppId } from '../../types/os';
 import { DEVELOPER_PROFILE } from '../../data/portfolioData';
@@ -21,12 +23,14 @@ interface SpatialMenuProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenApp: (appId: AppId) => void;
+  onExternalLink: (url: string) => void;
 }
 
 export const SpatialMenu: React.FC<SpatialMenuProps> = ({
   isOpen,
   onClose,
-  onOpenApp
+  onOpenApp,
+  onExternalLink
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -69,6 +73,8 @@ export const SpatialMenu: React.FC<SpatialMenuProps> = ({
     { id: 'resume' as AppId, title: 'Resume', desc: 'Curriculum vitae document reader', icon: FileText, color: 'text-indigo-400' },
     { id: 'terminal' as AppId, title: 'Terminal', desc: 'Workstation command shell', icon: Terminal, color: 'text-slate-300' },
     { id: 'customizer' as AppId, title: 'Customizer', desc: 'Wallpaper, theme & glass blur', icon: Sliders, color: 'text-purple-400' },
+    { id: 'personal' as AppId, title: 'Personal', desc: 'Gallery and listening room', icon: UserRound, color: 'text-rose-400' },
+    { id: 'walkthrough' as AppId, title: 'Quick Walkthrough', desc: 'A one-minute portfolio overview', icon: Play, color: 'text-lime-400' },
   ];
 
   const filteredApps = apps.filter(app => 
@@ -181,15 +187,14 @@ export const SpatialMenu: React.FC<SpatialMenuProps> = ({
         </div>
 
         {/* External Quick Link */}
-        <a
-          href={DEVELOPER_PROFILE.github}
-          target="_blank"
-          rel="noopener noreferrer"
+        {DEVELOPER_PROFILE.github && <button
+          type="button"
+          onClick={() => onExternalLink(DEVELOPER_PROFILE.github)}
           className="flex items-center justify-between px-2.5 py-1.5 mt-1 rounded-lg text-[11px] text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
         >
           <span>GitHub Profile</span>
           <ExternalLink className="w-3 h-3 text-slate-500" />
-        </a>
+        </button>}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { ProjectItem, ExperienceItem, TechItem, FileItem } from '../types/os';
+import { ProjectItem, ExperienceItem, TechItem, FileItem, PersonalData } from '../types/os';
 
 export const DEVELOPER_PROFILE = {
   name: 'Deevann Shrestha',
@@ -20,7 +20,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 'ir-app-portfolio',
     title: 'Investor Relations App Portfolio',
-    tagline: 'End-to-end delivery for 110+ investor relations app clients across requirements, QA, and release support.',
+    tagline: 'End-to-end delivery for 110+ investor relations app clients across requirements, development, QA, and release.',
     description: 'Supported the delivery lifecycle for a large investor relations application portfolio, coordinating requirements gathering, development handover, QA, and release execution across client-facing product work.',
     category: 'Systems',
     year: '2023–2026',
@@ -314,6 +314,16 @@ export const TECH_STACK_DATA: TechItem[] = [
     iconName: 'database'
   }
 ];
+
+export const PERSONAL_DATA: PersonalData = {
+  photos: [
+    { src: '/images/personal/gallery-placeholder-01.svg', alt: 'Replaceable personal gallery image placeholder', caption: 'Gallery image 01' },
+    { src: '/images/personal/gallery-placeholder-02.svg', alt: 'Replaceable personal gallery image placeholder', caption: 'Gallery image 02' },
+    { src: '/images/personal/gallery-placeholder-03.svg', alt: 'Replaceable personal gallery image placeholder', caption: 'Gallery image 03' }
+  ],
+  spotifyPlaylistUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator',
+  youtubePlaylistUrl: 'https://www.youtube-nocookie.com/embed/jfKfPfyJRdk'
+};
 
 export const VIRTUAL_FILES: FileItem[] = [
   {

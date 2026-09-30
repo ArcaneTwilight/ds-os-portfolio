@@ -8,6 +8,8 @@ import {
   FolderGit2, 
   HardDrive,
   Sparkles,
+  UserRound,
+  Play,
   LucideIcon
 } from 'lucide-react';
 import { AppId } from '../../types/os';
@@ -31,7 +33,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   resume: FileText,
   customizer: Sliders,
   files: FolderGit2,
-  terminal: TerminalIcon
+  terminal: TerminalIcon,
+  personal: UserRound,
+  walkthrough: Play
 };
 
 const COLOR_MAP: Record<string, { bg: string; border: string; glow: string; text: string }> = {
@@ -82,6 +86,18 @@ const COLOR_MAP: Record<string, { bg: string; border: string; glow: string; text
     border: 'border-zinc-400/30',
     glow: 'group-hover:shadow-[0_0_20px_rgba(148,163,184,0.25)]',
     text: 'text-slate-200'
+  },
+  personal: {
+    bg: 'from-rose-500/20 to-orange-600/20',
+    border: 'border-rose-400/30',
+    glow: 'group-hover:shadow-[0_0_20px_rgba(244,63,94,0.25)]',
+    text: 'text-rose-300'
+  },
+  walkthrough: {
+    bg: 'from-lime-500/20 to-emerald-600/20',
+    border: 'border-lime-400/30',
+    glow: 'group-hover:shadow-[0_0_20px_rgba(132,204,22,0.25)]',
+    text: 'text-lime-300'
   }
 };
 

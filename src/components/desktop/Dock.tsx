@@ -8,6 +8,8 @@ import {
   FolderGit2, 
   Terminal,
   Sparkles,
+  UserRound,
+  Play,
   LucideIcon 
 } from 'lucide-react';
 import { AppId, WindowState } from '../../types/os';
@@ -33,7 +35,9 @@ const UNPINNED_APP_METAS: Record<string, DockAppDefinition> = {
   projects: { id: 'projects', label: 'Projects', icon: FolderKanban, color: 'text-sky-400' },
   experience: { id: 'experience', label: 'Experience', icon: Layers, color: 'text-emerald-400' },
   'tech-stack': { id: 'tech-stack', label: 'Tech Stack', icon: HardDrive, color: 'text-amber-400' },
-  resume: { id: 'resume', label: 'Resume', icon: FileText, color: 'text-indigo-400' }
+  resume: { id: 'resume', label: 'Resume', icon: FileText, color: 'text-indigo-400' },
+  personal: { id: 'personal', label: 'Personal', icon: UserRound, color: 'text-rose-400' },
+  walkthrough: { id: 'walkthrough', label: 'Walkthrough', icon: Play, color: 'text-lime-400' }
 };
 
 interface DockProps {
@@ -61,7 +65,7 @@ export const Dock: React.FC<DockProps> = ({
     <div className="fixed bottom-4 left-0 right-0 flex justify-center pointer-events-none z-40 select-none">
       <div 
         onMouseLeave={() => setHoveredIndex(null)}
-        className="pointer-events-auto flex items-end gap-2 px-3.5 py-2 rounded-2xl bg-black/55 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300 ring-1 ring-white/10"
+        className="pointer-events-auto flex items-end gap-2 px-3.5 py-2 rounded-2xl bg-black/55 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300 ring-1 ring-white/10 max-[768px]:gap-1 max-[768px]:px-2 max-[768px]:py-1.5"
       >
         {dockItems.map((app, index) => {
           const Icon = app.icon;
@@ -101,14 +105,14 @@ export const Dock: React.FC<DockProps> = ({
                     transform: `scale(${scale}) translateY(${isHovered ? '-6px' : '0px'})`,
                     transformOrigin: 'bottom center'
                   }}
-                  className={`relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-150 ease-out focus:outline-none ${
+                  className={`relative w-11 h-11 max-[768px]:w-10 max-[768px]:h-10 rounded-xl flex items-center justify-center transition-all duration-150 ease-out focus:outline-none ${
                     isActive
                       ? 'bg-white/20 border border-white/30 shadow-[0_0_15px_rgba(255,255,255,0.25)]'
                       : 'bg-white/10 hover:bg-white/15 border border-white/10'
                   }`}
                   aria-label={`Launch ${app.label}`}
                 >
-                  <Icon className={`w-5 h-5 ${app.color} transition-transform ${isHovered ? 'scale-110' : ''}`} />
+                  <Icon className={`w-5 h-5 max-[768px]:w-4.5 max-[768px]:h-4.5 ${app.color} transition-transform ${isHovered ? 'scale-110' : ''}`} />
                 </button>
 
                 {/* Indicator Dot */}
