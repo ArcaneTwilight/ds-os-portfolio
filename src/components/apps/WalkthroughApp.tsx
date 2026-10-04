@@ -53,7 +53,7 @@ export const WalkthroughApp: React.FC = () => {
         {activeSlide === 0 && (
           <div className="max-w-2xl">
             <div className="mb-4 grid h-12 w-12 place-items-center rounded-2xl border border-sky-200/20 bg-sky-300/10 text-sky-100"><UserRound className="h-6 w-6" /></div>
-            <h2 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">Hi, I'm Deevann —<br /><span className="text-sky-200">Full-Stack Developer</span></h2>
+            <h2 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">Hi, I'm Deevann —<br /><span className="text-sky-200">React Native Developer</span></h2>
             <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300">{DEVELOPER_PROFILE.tagline}</p>
           </div>
         )}

@@ -2,6 +2,20 @@
 
 Notable project changes are recorded here. Add an entry for every project-change commit, following the policy in [project-map.md](project-map.md#changelog-and-versioning).
 
+## [Unreleased]
+
+### Added
+- Added an interactive travel gallery with country maps, selectable location pins, full-screen photo viewing, and new travel and pet photos.
+
+### Changed
+- Updated travel portfolio data and the walkthrough role description; synchronized ambient audio with settings changes.
+
+### Fixed
+- Prevented duplicate ambient-audio playback.
+
+### Documentation
+- Documented where travel photos and map assets are stored and how to update their location data.
+
 ## [1.1.0] - 2026-09-30
 
 ### Added

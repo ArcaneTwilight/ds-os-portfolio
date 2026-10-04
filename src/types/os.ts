@@ -92,7 +92,16 @@ export interface TechItem {
 }
 
 export interface PersonalData {
-  photos: { src: string; alt: string; caption: string }[];
+  travelLocations: {
+    id: string;
+    title: string;
+    city: string;
+    country: string;
+    src: string;
+    alt: string;
+    mapX: number;
+    mapY: number;
+  }[];
   spotifyPlaylistUrl: string;
   youtubePlaylistUrl: string;
 }

@@ -89,6 +89,7 @@ class SoundManager {
   startAmbient() {
     try {
       if (typeof window === 'undefined') return;
+      if (this.ambientAudio && !this.ambientAudio.paused) return;
       if (!this.ambientAudio) {
         this.ambientAudio = new Audio('/audio/honey-jam.mp3');
         this.ambientAudio.loop = true;

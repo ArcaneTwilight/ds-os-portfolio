@@ -316,10 +316,127 @@ export const TECH_STACK_DATA: TechItem[] = [
 ];
 
 export const PERSONAL_DATA: PersonalData = {
-  photos: [
-    { src: '/images/personal/gallery-placeholder-01.svg', alt: 'Replaceable personal gallery image placeholder', caption: 'Gallery image 01' },
-    { src: '/images/personal/gallery-placeholder-02.svg', alt: 'Replaceable personal gallery image placeholder', caption: 'Gallery image 02' },
-    { src: '/images/personal/gallery-placeholder-03.svg', alt: 'Replaceable personal gallery image placeholder', caption: 'Gallery image 03' }
+  travelLocations: [
+    {
+      id: 'cats',
+      title: 'My Cats',
+      city: 'Baguio',
+      country: 'Philippines',
+      src: '/images/personal/My-Cats_Baguio_Philippines.jpg',
+      alt: 'Three cats resting together',
+      mapX: 14859,
+      mapY: 16559
+    },
+    {
+      id: 'hamster',
+      title: 'My Hamster',
+      city: 'Baguio',
+      country: 'Philippines',
+      src: '/images/personal/My-Hamster_Baguio_Philippines.jpg',
+      alt: 'A golden hamster resting on a blanket',
+      mapX: 14859,
+      mapY: 16559
+    },
+    {
+      id: 'cat',
+      title: 'My Cat',
+      city: 'Baguio',
+      country: 'Philippines',
+      src: '/images/personal/My-Cat_Baguio_Philippines.jpg',
+      alt: 'A calico cat sitting beside a pair of shoes',
+      mapX: 14859,
+      mapY: 16559
+    },
+    {
+      id: 'mandaluyong-skyline',
+      title: 'Mandaluyong Skyline',
+      city: 'Mandaluyong',
+      country: 'Philippines',
+      src: '/images/personal/Mandaluyong-SKyline_Mandaluyong_Philippines.jpg',
+      alt: 'Mandaluyong city skyline at sunset',
+      mapX: 16423,
+      mapY: 23217
+    },
+    {
+      id: 'boudhanath',
+      title: 'Boudhanath Stupa',
+      city: 'Kathmandu',
+      country: 'Nepal',
+      src: '/images/personal/Boudhanath-Stupa_Kathmandu_Nepal.jpg',
+      alt: 'Boudhanath Stupa and prayer flags in Kathmandu',
+      mapX: 740.1,
+      mapY: 468
+    },
+    {
+      id: 'buddha-amideva-park',
+      title: 'Buddha Amideva Park',
+      city: 'Swayambhunath',
+      country: 'Nepal',
+      src: '/images/personal/Buddha-Amideva-Park_Swayambhunath_Nepal.jpg',
+      alt: 'Golden statues at Buddha Amideva Park',
+      mapX: 730.7,
+      mapY: 469.1
+    },
+    {
+      id: 'chandragiri-hills',
+      title: 'Chandragiri Hills',
+      city: 'Kathmandu',
+      country: 'Nepal',
+      src: '/images/personal/Chandragiri-Hills_Kathmandu_Nepal.jpg',
+      alt: 'Himalayan mountain range viewed from Chandragiri Hills',
+      mapX: 721.5,
+      mapY: 476.6
+    },
+    {
+      id: 'batu-caves',
+      title: 'Batu Caves',
+      city: 'Kuala Lumpur',
+      country: 'Malaysia',
+      src: '/images/personal/Batu-Caves_Kuala-Lumpur-Malaysia.jpg',
+      alt: 'Sculpted temple facade at Batu Caves',
+      mapX: 130.8,
+      mapY: 249.9
+    },
+    {
+      id: 'petronas-twin-towers',
+      title: 'Petronas Twin Towers',
+      city: 'Kuala Lumpur',
+      country: 'Malaysia',
+      src: '/images/personal/Petronas-Twin-Tower_Kuala-Lumpur-Malaysia.jpg',
+      alt: 'Petronas Twin Towers in Kuala Lumpur',
+      mapX: 132.4,
+      mapY: 254.5
+    },
+    {
+      id: 'peoples-park',
+      title: "People's Park in the Sky",
+      city: 'Tagaytay',
+      country: 'Philippines',
+      src: "/images/personal/People's-Park-in-the-Sky_Tagaytay_Philippines.jpg",
+      alt: "Panoramic view from People's Park in the Sky",
+      mapX: 16366,
+      mapY: 24829
+    },
+    {
+      id: 'hundred-islands',
+      title: 'Hundred Islands',
+      city: 'Pangasinan',
+      country: 'Philippines',
+      src: '/images/personal/Hundred-Islands_Pangasinan_Philippines.jpg',
+      alt: 'Green island surrounded by clear water at Hundred Islands',
+      mapX: 12691,
+      mapY: 17311
+    },
+    {
+      id: 'chocolate-hills',
+      title: 'Chocolate Hills',
+      city: 'Bohol',
+      country: 'Philippines',
+      src: '/images/personal/Chocolate-Hills_Bohol_Philippines.jpg',
+      alt: 'Panoramic view across the Chocolate Hills in Bohol',
+      mapX: 27340,
+      mapY: 40386
+    }
   ],
   spotifyPlaylistUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator',
   youtubePlaylistUrl: 'https://www.youtube-nocookie.com/embed/jfKfPfyJRdk'

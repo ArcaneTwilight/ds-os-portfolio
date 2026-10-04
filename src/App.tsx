@@ -284,6 +284,9 @@ export default function App() {
   }, [settings.soundEffectsEnabled]);
 
   const handleUpdateSettings = (newSettings: Partial<SystemSettings>) => {
+    if (typeof newSettings.ambientAudio === 'boolean') {
+      soundManager.toggleAmbient(newSettings.ambientAudio);
+    }
     setSettings((prev) => ({ ...prev, ...newSettings }));
   };
 

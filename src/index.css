@@ -179,9 +179,91 @@
   backdrop-filter: blur(12px);
 }
 
-.personal-photo img {
+.travel-photo {
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 7px;
+  background: rgba(255, 255, 255, 0.035);
+  text-align: left;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+.travel-photo:hover,
+.travel-photo:focus-visible {
+  border-color: rgba(45, 212, 191, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+.travel-photo-active {
+  border-color: rgba(45, 212, 191, 0.7);
+  background: rgba(20, 184, 166, 0.12);
+}
+.travel-photo img {
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.06);
+}
+.travel-map-panel {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(2, 6, 23, 0.45);
+}
+.travel-map-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: #080f1d;
+}
+.travel-map-frame[data-country="Philippines"] {
+  width: min(100%, 220px);
+  margin-inline: auto;
+}
+.travel-map-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.travel-map-pin {
+  position: absolute;
+  display: grid;
+  width: 24px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+  color: #2dd4bf;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transform: translate(-50%, -100%);
+}
+.travel-map-pin:focus-visible { filter: drop-shadow(0 0 4px white); }
+.travel-map-pin-active { z-index: 1; color: #fbbf24; }
+.travel-map-pin-icon {
+  position: relative;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  stroke: #0f172a;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.8));
+}
+.travel-map-pin-pulse {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(251, 191, 36, 0.8);
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.25);
+  animation: travel-pin-pulse 1.8s ease-out infinite;
+}
+@keyframes travel-pin-pulse {
+  from { opacity: 0.85; transform: scale(0.6); }
+  to { opacity: 0; transform: scale(1.5); }
 }
 
 .music-platform {
@@ -463,4 +545,3 @@
     background: rgba(255, 255, 255, 0.3);
   }
 }
-
