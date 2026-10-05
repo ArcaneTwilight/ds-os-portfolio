@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AppId, WallpaperId } from '../../types/os';
-import { DEVELOPER_PROFILE, PROJECTS_DATA, TECH_STACK_DATA, VIRTUAL_FILES } from '../../data/portfolioData';
+import { DEVELOPER_PROFILE, VIRTUAL_FILES } from '../../data/portfolioData';
 
 interface TerminalAppProps {
   onOpenApp: (appId: AppId) => void;
@@ -62,10 +62,8 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
             <div className="text-sky-300 font-semibold mb-1">Available System Commands:</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">help</span> — Display this manual</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">about</span> — Show developer identity and specs</div>
-            <div><span className="text-emerald-400 font-mono w-28 inline-block">projects</span> — List flagship engineering works</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">experience</span> — View career trajectory and roles</div>
-            <div><span className="text-emerald-400 font-mono w-28 inline-block">skills</span> — Enumerate tech stack and proficiencies</div>
-            <div><span className="text-emerald-400 font-mono w-28 inline-block">open [app|url]</span> — Launch an app or request an external link (about|projects|experience|resume|customizer|files|personal|walkthrough)</div>
+            <div><span className="text-emerald-400 font-mono w-28 inline-block">open [app|url]</span> — Launch an app or request an external link (about|experience|resume|customizer|files|personal|walkthrough)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">cat [file]</span> — Print file content (e.g. cat about.txt)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">wallpaper [name]</span> — Change wallpaper (aurora|cyberpunk|deep-space|slate|sunset)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">whoami</span> — Print current active user</div>
@@ -89,46 +87,9 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
         output = <div className="text-slate-200">deevann@ds-os (permissions: read, execute, inspect)</div>;
         break;
 
-      case 'projects':
-        output = (
-          <div className="space-y-2">
-            <div className="text-sky-300 font-semibold">Flagship Projects:</div>
-            {PROJECTS_DATA.map((p) => (
-              <div key={p.id} className="text-xs">
-                <span className="text-emerald-400 font-bold">{p.title}</span> ({p.year}) —{' '}
-                <span className="text-slate-300">{p.tagline}</span>
-                <div className="text-slate-400 text-[11px] font-mono">
-                  Stack: {p.technologies.join(', ')}
-                </div>
-              </div>
-            ))}
-            <div className="text-slate-400 text-[11px] mt-1">
-              Type <span className="text-white">open projects</span> to launch interactive project viewer.
-            </div>
-          </div>
-        );
-        break;
-
-      case 'skills':
-      case 'tech':
-        output = (
-          <div className="space-y-1.5 text-xs text-slate-300">
-            <div className="text-amber-300 font-semibold">Technical Inventory:</div>
-            {TECH_STACK_DATA.map((t) => (
-              <div key={t.id} className="flex items-center gap-2">
-                <span className="w-28 text-white font-mono">{t.name}</span>
-                <span className="text-slate-400 w-24">[{t.category}]</span>
-                <span className="text-amber-400 font-mono">{t.proficiency}%</span>
-                <span className="text-slate-500">({t.experienceYears}y)</span>
-              </div>
-            ))}
-          </div>
-        );
-        break;
-
       case 'open':
         if (!arg) {
-          output = <div className="text-rose-400">Error: Please specify target app. Usage: open &lt;about|projects|experience|resume|customizer|files&gt;</div>;
+          output = <div className="text-rose-400">Error: Please specify target app. Usage: open &lt;about|experience|resume|customizer|files&gt;</div>;
         } else {
           if (/^https?:\/\//i.test(arg)) {
             onExternalLink(arg);
@@ -136,7 +97,7 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
             break;
           }
           const target = arg.toLowerCase() as AppId;
-          const validApps: AppId[] = ['about', 'projects', 'experience', 'resume', 'customizer', 'files', 'personal', 'walkthrough'];
+          const validApps: AppId[] = ['about', 'experience', 'resume', 'customizer', 'files', 'personal', 'walkthrough'];
           if (validApps.includes(target)) {
             onOpenApp(target);
             output = <div className="text-emerald-400">Launching application: {target}...</div>;

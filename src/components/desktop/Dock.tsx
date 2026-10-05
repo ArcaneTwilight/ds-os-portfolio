@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  FolderKanban, 
   Layers, 
-  HardDrive, 
   FileText, 
   Sliders, 
   FolderGit2, 
@@ -32,9 +30,7 @@ const PINNED_APPS: DockAppDefinition[] = [
 // Other applications that appear in the dock only when open
 const UNPINNED_APP_METAS: Record<string, DockAppDefinition> = {
   about: { id: 'about', label: 'About', icon: Sparkles, color: 'text-blue-400' },
-  projects: { id: 'projects', label: 'Projects', icon: FolderKanban, color: 'text-sky-400' },
   experience: { id: 'experience', label: 'Experience', icon: Layers, color: 'text-emerald-400' },
-  'tech-stack': { id: 'tech-stack', label: 'Tech Stack', icon: HardDrive, color: 'text-amber-400' },
   resume: { id: 'resume', label: 'Resume', icon: FileText, color: 'text-indigo-400' },
   personal: { id: 'personal', label: 'Personal', icon: UserRound, color: 'text-rose-400' },
   walkthrough: { id: 'walkthrough', label: 'Walkthrough', icon: Play, color: 'text-lime-400' }

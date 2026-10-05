@@ -4,11 +4,14 @@ Notable project changes are recorded here. Add an entry for every project-change
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-05
+
 ### Added
 - Added an interactive travel gallery with country maps, selectable location pins, full-screen photo viewing, and new travel and pet photos.
 
 ### Changed
 - Updated travel portfolio data and the walkthrough role description; synchronized ambient audio with settings changes.
+- Temporarily hid the Projects and Tech Stack apps from desktop, Files, navigation, dock, and Terminal launch surfaces.
 
 ### Fixed
 - Prevented duplicate ambient-audio playback.

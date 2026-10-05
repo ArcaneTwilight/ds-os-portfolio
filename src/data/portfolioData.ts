@@ -452,22 +452,6 @@ export const VIRTUAL_FILES: FileItem[] = [
     appId: 'experience'
   },
   {
-    id: 'folder-projects',
-    name: 'Projects',
-    type: 'folder',
-    size: '4 items',
-    updatedAt: '2026-09-29',
-    appId: 'projects'
-  },
-  {
-    id: 'folder-tech',
-    name: 'Tech_Stack',
-    type: 'folder',
-    size: '13 items',
-    updatedAt: '2026-09-29',
-    appId: 'tech-stack'
-  },
-  {
     id: 'file-resume',
     name: 'Resume.pdf',
     type: 'pdf',

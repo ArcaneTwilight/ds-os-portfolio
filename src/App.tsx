@@ -49,6 +49,7 @@ import { WalkthroughApp } from './components/apps/WalkthroughApp';
 
 const STORAGE_KEY = 'ds_os_settings_v3';
 const LEGACY_STORAGE_KEY = 'ds_os_settings_v2';
+const HIDDEN_APP_IDS: AppId[] = ['projects', 'tech-stack'];
 
 const DEFAULT_SETTINGS: SystemSettings = {
   wallpaper: 'aurora',
@@ -315,6 +316,8 @@ export default function App() {
   // Open an app window
   const openApp = useCallback(
     (appId: AppId) => {
+      if (HIDDEN_APP_IDS.includes(appId)) return;
+
       soundManager.playWindowOpen();
       setWindows((prev) => {
         const current = prev[appId];
@@ -465,7 +468,7 @@ export default function App() {
 
       {/* 4. Desktop Grid of Icons */}
       <main className="absolute top-12 left-4 bottom-24 w-auto flex flex-col flex-wrap gap-2 pointer-events-auto z-10 p-2">
-        {DESKTOP_ICONS.map((icon) => (
+        {DESKTOP_ICONS.filter((icon) => !HIDDEN_APP_IDS.includes(icon.appId)).map((icon) => (
           <DesktopIcon
             key={icon.id}
             id={icon.id}

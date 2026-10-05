@@ -78,13 +78,6 @@ export const FilesApp: React.FC<FilesAppProps> = ({ onOpenApp }) => {
                 <span>Workspace</span>
               </button>
               <button
-                onClick={() => onOpenApp('projects')}
-                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white text-xs text-left transition-colors"
-              >
-                <Folder className="w-3.5 h-3.5 text-sky-400" />
-                <span>Projects</span>
-              </button>
-              <button
                 onClick={() => onOpenApp('experience')}
                 className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white text-xs text-left transition-colors"
               >
