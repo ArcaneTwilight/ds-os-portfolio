@@ -2,7 +2,6 @@ export type AppId =
   | 'about'
   | 'projects'
   | 'experience'
-  | 'tech-stack'
   | 'resume'
   | 'customizer'
   | 'files'
@@ -66,6 +65,14 @@ export interface ProjectItem {
   architectureNotes?: string;
   accentColor: string;
   stats?: { label: string; value: string }[];
+  screenshotUrl?: string;
+  mainTechnologies?: string[];
+  techStack?: { area: string; technologies: string[] }[];
+  extendedCapabilities?: string[];
+  audience?: string;
+  designNotes?: string;
+  projectStatus?: string;
+  demoAccess?: { username: string; password: string };
 }
 
 export interface ExperienceItem {
@@ -74,7 +81,7 @@ export interface ExperienceItem {
   company: string;
   period: string;
   location: string;
-  category: 'Full-Stack' | 'Architecture' | 'Frontend' | 'Systems';
+  category: 'Mobile Delivery' | 'Application Support' | 'Enterprise Systems' | 'Manufacturing' | 'Software Development' | 'Content Operations';
   description: string;
   highlights: string[];
   technologies: string[];

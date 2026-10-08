@@ -15,18 +15,14 @@ import { ProjectItem } from '../../types/os';
 
 export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = ({ onExternalLink }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
 
-  const categories = ['All', 'Systems', 'AI', 'Cloud', 'Interface'];
-
   const filteredProjects = PROJECTS_DATA.filter((project) => {
-    const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.technologies.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   // If viewing project detail inspector
@@ -78,8 +74,16 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
             <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
               <span className="font-semibold text-sky-400 uppercase tracking-wider">{activeProject.category}</span>
               <span aria-hidden="true">·</span>
-              <span>Released {activeProject.year}</span>
+              <span>{activeProject.year}</span>
             </div>
+
+            {activeProject.screenshotUrl && (
+              <img
+                src={activeProject.screenshotUrl}
+                alt={`${activeProject.title} application dashboard`}
+                className="w-full rounded-xl border border-white/10 mb-6"
+              />
+            )}
 
             <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
               {activeProject.title}
@@ -109,17 +113,23 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
             <div className="p-5 rounded-xl bg-white/5 border border-white/10">
               <h2 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
                 <Layers className="w-4 h-4 text-sky-400" />
-                <span>Executive Overview</span>
+                <span>Project Overview</span>
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 {activeProject.description}
               </p>
+              {activeProject.audience && (
+                <p className="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                  <span className="font-semibold text-slate-300">Audience: </span>
+                  {activeProject.audience}
+                </p>
+              )}
             </div>
 
             <div className="p-5 rounded-xl bg-white/5 border border-white/10">
               <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-emerald-400" />
-                <span>Key Engineering Capabilities</span>
+                <span>Core Capabilities</span>
               </h2>
               <div className="space-y-2.5">
                 {activeProject.features.map((feat, idx) => (
@@ -131,15 +141,35 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
               </div>
             </div>
 
+            {activeProject.extendedCapabilities && (
+              <div className="p-5 rounded-xl bg-white/5 border border-white/10">
+                <h2 className="text-sm font-semibold text-white mb-3">Extended Functionality</h2>
+                <div className="space-y-2.5">
+                  {activeProject.extendedCapabilities.map((capability) => (
+                    <div key={capability} className="flex items-start gap-2.5 text-xs text-slate-300">
+                      <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                      <span>{capability}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {activeProject.architectureNotes && (
               <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                 <h2 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
                   <Activity className="w-4 h-4 text-amber-400" />
-                  <span>Architecture & Performance Considerations</span>
+                  <span>Architecture & Integrations</span>
                 </h2>
                 <p className="text-xs text-slate-300 font-mono leading-relaxed bg-black/40 p-3 rounded-lg border border-white/5">
                   {activeProject.architectureNotes}
                 </p>
+              </div>
+            )}
+            {activeProject.designNotes && (
+              <div className="p-5 rounded-xl bg-white/5 border border-white/10">
+                <h2 className="text-sm font-semibold text-white mb-2">Design</h2>
+                <p className="text-xs text-slate-300 leading-relaxed">{activeProject.designNotes}</p>
               </div>
             )}
           </div>
@@ -147,33 +177,57 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
           {/* Right Column: Stack & Metadata */}
           <div className="space-y-6">
             <div className="p-5 rounded-xl bg-white/5 border border-white/10">
-              <h2 className="text-sm font-semibold text-white mb-3">Technologies Deployed</h2>
-              <div className="flex flex-wrap gap-1.5">
-                {activeProject.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-md bg-white/10 text-xs text-slate-200 border border-white/5"
-                  >
-                    {tech}
-                  </span>
+              <h2 className="text-sm font-semibold text-white mb-3">Technology Stack</h2>
+              <div className="space-y-3">
+                {(activeProject.techStack ?? [{ area: 'Technologies', technologies: activeProject.technologies }]).map((group) => (
+                  <div key={group.area}>
+                    <h3 className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">{group.area}</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 rounded-md bg-white/10 text-[11px] text-slate-200 border border-white/5"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
 
             <div className="p-5 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-400 space-y-2">
               <div className="flex justify-between py-1 border-b border-white/5">
-                <span>System Status</span>
-                <span className="text-emerald-400 font-medium">Production Verified</span>
+                <span>Demo</span>
+                <span className="text-emerald-400 font-medium">{activeProject.projectStatus ?? 'Details available'}</span>
               </div>
               <div className="flex justify-between py-1 border-b border-white/5">
-                <span>Domain Category</span>
+                <span>Category</span>
                 <span className="text-slate-200">{activeProject.category}</span>
               </div>
               <div className="flex justify-between py-1">
-                <span>Release Cycle</span>
+                <span>Project Year</span>
                 <span className="text-slate-200">{activeProject.year}</span>
               </div>
             </div>
+
+            {activeProject.demoAccess && (
+              <div className="p-5 rounded-xl bg-sky-500/10 border border-sky-400/20 text-xs">
+                <h2 className="text-sm font-semibold text-white mb-1">Demo Access</h2>
+                <p className="text-slate-400 mb-3">Use these credentials to explore the app.</p>
+                <dl className="space-y-2 select-text">
+                  <div>
+                    <dt className="text-[10px] uppercase tracking-wider text-slate-400">Username</dt>
+                    <dd className="font-mono text-slate-100">{activeProject.demoAccess.username}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-[10px] uppercase tracking-wider text-slate-400">Password</dt>
+                    <dd className="font-mono text-slate-100">{activeProject.demoAccess.password}</dd>
+                  </div>
+                </dl>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -182,23 +236,10 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
 
   return (
     <div className="window-content-enter flex-1 flex flex-col p-5 overflow-y-auto">
-      {/* Search & Category Filter Toolbar */}
+      {/* Search Toolbar */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between pb-4 border-b border-white/10 mb-5">
-        {/* Category Pills (Functional buttons) */}
-        <div className="flex items-center gap-1 p-1 bg-white/5 rounded-xl border border-white/10 overflow-x-auto">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`tech-filter-pill ${selectedCategory === cat ? 'tech-filter-active' : ''}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Search Input */}
-        <div className="relative min-w-[220px]">
+        <p className="text-xs text-slate-400">Apps I’m creating and have created</p>
+        <div className="relative min-w-[220px] sm:max-w-xs sm:w-full">
           <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
@@ -217,7 +258,6 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
           <button
             onClick={() => {
               setSearchQuery('');
-              setSelectedCategory('All');
             }}
             className="mt-3 text-xs text-sky-400 hover:underline"
           >
@@ -225,61 +265,53 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
           </button>
         </div>
       ) : (
-        <div key={selectedCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              onClick={() => setActiveProject(project)}
-              className="project-card-enter group flex flex-col justify-between p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl relative overflow-hidden"
+              className="project-card-enter group flex flex-col lg:flex-row rounded-2xl bg-white/5 border border-white/10 shadow-lg relative overflow-hidden"
               style={{ animationDelay: `${index * 55}ms` }}
             >
-              {/* Subtle accent glow top border */}
+              {/* Project accent */}
               <div
-                className="absolute top-0 left-0 right-0 h-1 opacity-60 transition-opacity group-hover:opacity-100"
+                className="absolute top-0 left-0 right-0 lg:bottom-0 lg:right-auto lg:w-1 h-1 lg:h-auto opacity-70"
                 style={{ backgroundColor: project.accentColor }}
               />
 
-              <div>
-                {/* Meta */}
-                <div className="flex items-center justify-between text-xs text-slate-400 mb-2.5">
-                  <span className="font-semibold text-sky-400 uppercase tracking-wider text-[10px]">
-                    {project.category}
-                  </span>
-                  <span className="font-mono text-[11px]">{project.year}</span>
+              {project.screenshotUrl && (
+                <img
+                  src={project.screenshotUrl}
+                  alt={`${project.title} application dashboard`}
+                  className="w-full lg:w-[55%] h-52 lg:h-auto lg:min-h-[280px] object-cover object-top border-b lg:border-b-0 lg:border-r border-white/10"
+                />
+              )}
+
+              <div className="flex flex-1 flex-col justify-center p-5 sm:p-7">
+                <div className="flex items-center gap-2 text-[10px] text-slate-400 mb-2">
+                  <span className="font-semibold text-sky-400 uppercase tracking-wider">{project.category}</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="font-mono">{project.year}</span>
                 </div>
+                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">{project.tagline}</p>
 
-                {/* Title & Tagline */}
-                <h3 className="text-base font-bold text-white group-hover:text-sky-300 transition-colors mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed mb-4">
-                  {project.tagline}
-                </p>
-              </div>
-
-              <div>
-                {/* Tech chips */}
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {project.technologies.slice(0, 3).map((t) => (
-                    <span
-                      key={t}
-                      className="px-2 py-0.5 rounded text-[10px] bg-white/5 border border-white/5 text-slate-300"
-                    >
-                      {t}
+                <h4 className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Main Tech Stack</h4>
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {(project.mainTechnologies ?? project.technologies.slice(0, 6)).map((tech) => (
+                    <span key={tech} className="px-2.5 py-1 rounded-md bg-white/10 text-[11px] text-slate-200 border border-white/5">
+                      {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-1.5 py-0.5 text-[10px] text-slate-400">
-                      +{project.technologies.length - 3}
-                    </span>
-                  )}
                 </div>
 
-                {/* Footer Action */}
-                <div className="flex items-center justify-between pt-3 border-t border-white/5 text-xs font-medium text-sky-400 group-hover:text-sky-300">
-                  <span>Inspect Details</span>
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveProject(project)}
+                  className="self-start inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500/20 border border-sky-400/30 hover:bg-sky-500/30 text-xs text-sky-200 font-medium transition-colors"
+                >
+                  More details
+                  <span aria-hidden="true">→</span>
+                </button>
               </div>
             </div>
           ))}

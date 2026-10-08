@@ -53,7 +53,7 @@ The overall visual intent is "premium developer workstation" rather than a liter
 | App | Source | Main behavior and content |
 | --- | --- | --- |
 | About | [src/components/apps/AboutApp.tsx](src/components/apps/AboutApp.tsx) | Intro profile, summary, environment details, and profile links. |
-| Projects | [src/components/apps/ProjectsApp.tsx](src/components/apps/ProjectsApp.tsx) | Search/category filtering, project cards, and a detail inspector. |
+| Projects | [src/components/apps/ProjectsApp.tsx](src/components/apps/ProjectsApp.tsx) | Searchable app showcase with screenshots, primary stack summaries, demo access, and detailed project views. |
 | Experience | [src/components/apps/ExperienceApp.tsx](src/components/apps/ExperienceApp.tsx) | Career timeline with search and expandable entries. |
 | Tech Stack | [src/components/apps/TechStackApp.tsx](src/components/apps/TechStackApp.tsx) | Filterable engineering inventory and skill stacks. |
 | Files | [src/components/apps/FilesApp.tsx](src/components/apps/FilesApp.tsx) | Virtual file browser; clicking or opening items routes to destination app windows. |
@@ -107,7 +107,7 @@ These app IDs also define the desktop icon configuration, default window geometr
 
 ## Static Assets And Deployment
 
-- [public/](public/): static content including resume PDF, SVG branding assets, and audio assets.
+- [public/](public/): static content including resume PDF, SVG branding assets, audio assets, and the Company Nexus screenshot in `public/images/projects/`.
 - [vercel.json](vercel.json): SPA fallback to `index.html` and cache rules for `/assets/*`.
 - [README.md](README.md): setup and deployment instructions.
 

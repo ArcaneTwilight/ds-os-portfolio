@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
+  FolderKanban,
   Layers, 
   Mail, 
   FileText, 
@@ -64,6 +65,7 @@ export const SpatialMenu: React.FC<SpatialMenuProps> = ({
 
   const apps = [
     { id: 'about' as AppId, title: 'About DS OS', desc: 'System specs & developer profile', icon: Info, color: 'text-blue-400' },
+    { id: 'projects' as AppId, title: 'Projects', desc: 'Apps and systems I have created', icon: FolderKanban, color: 'text-sky-400' },
     { id: 'experience' as AppId, title: 'Experience', desc: 'Staff engineer timeline & leadership', icon: Layers, color: 'text-emerald-400' },
     { id: 'files' as AppId, title: 'Files & Folders', desc: 'Virtual filesystem & documents', icon: FolderGit2, color: 'text-cyan-400' },
     { id: 'resume' as AppId, title: 'Resume', desc: 'Curriculum vitae document reader', icon: FileText, color: 'text-indigo-400' },

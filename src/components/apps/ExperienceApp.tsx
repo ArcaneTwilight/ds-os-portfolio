@@ -1,59 +1,15 @@
 import React, { useState } from 'react';
-import { Search, Briefcase, MapPin, Calendar, CheckCircle2, ChevronRight } from 'lucide-react';
+import { MapPin, Calendar, CheckCircle2, ChevronRight } from 'lucide-react';
 import { EXPERIENCE_DATA } from '../../data/portfolioData';
 
 export const ExperienceApp: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [expandedId, setExpandedId] = useState<string>('');
-
-  const categories = ['All', 'Architecture', 'Full-Stack', 'Systems', 'Frontend'];
-
-  const filteredExperience = EXPERIENCE_DATA.filter((item) => {
-    const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
-    const matchesSearch =
-      item.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.technologies.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
 
   return (
     <div className="flex-1 flex flex-col p-5 overflow-y-auto">
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between pb-4 border-b border-white/10 mb-6">
-        <div className="flex items-center gap-1 p-1 bg-white/5 rounded-xl border border-white/10 overflow-x-auto">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
-                selectedCategory === cat
-                  ? 'bg-white/20 text-white shadow-xs'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="relative min-w-[220px]">
-          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input
-            type="text"
-            placeholder="Search roles, companies, tech..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
-          />
-        </div>
-      </div>
-
       {/* Career Timeline */}
-      <div key={selectedCategory} className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/15">
-        {filteredExperience.map((item, index) => {
+      <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/15">
+        {EXPERIENCE_DATA.map((item, index) => {
           const isExpanded = expandedId === item.id;
 
           return (

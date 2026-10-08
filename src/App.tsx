@@ -7,7 +7,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { 
   FolderKanban, 
   Layers, 
-  HardDrive, 
   FileText, 
   Sliders, 
   FolderGit2, 
@@ -39,7 +38,6 @@ import { ExternalLinkModal } from './components/ui/ExternalLinkModal';
 import { AboutApp } from './components/apps/AboutApp';
 import { ProjectsApp } from './components/apps/ProjectsApp';
 import { ExperienceApp } from './components/apps/ExperienceApp';
-import { TechStackApp } from './components/apps/TechStackApp';
 import { ResumeApp } from './components/apps/ResumeApp';
 import { CustomizerApp } from './components/apps/CustomizerApp';
 import { FilesApp } from './components/apps/FilesApp';
@@ -49,7 +47,6 @@ import { WalkthroughApp } from './components/apps/WalkthroughApp';
 
 const STORAGE_KEY = 'ds_os_settings_v3';
 const LEGACY_STORAGE_KEY = 'ds_os_settings_v2';
-const HIDDEN_APP_IDS: AppId[] = ['projects', 'tech-stack'];
 
 const DEFAULT_SETTINGS: SystemSettings = {
   wallpaper: 'aurora',
@@ -72,7 +69,7 @@ const APP_META: Record<AppId, { title: string; icon: LucideIcon; color: string; 
     minSize: { width: 420, height: 340 }
   },
   projects: {
-    title: 'Projects // Flagship Systems',
+    title: 'Projects // Apps & Systems',
     icon: FolderKanban,
     color: 'text-sky-400',
     defaultSize: { width: 920, height: 620 },
@@ -84,13 +81,6 @@ const APP_META: Record<AppId, { title: string; icon: LucideIcon; color: string; 
     color: 'text-emerald-400',
     defaultSize: { width: 840, height: 580 },
     minSize: { width: 480, height: 360 }
-  },
-  'tech-stack': {
-    title: 'Tech Stack // Engineering Inventory',
-    icon: HardDrive,
-    color: 'text-amber-400',
-    defaultSize: { width: 860, height: 560 },
-    minSize: { width: 460, height: 360 }
   },
   files: {
     title: 'Files // Virtual Workspace',
@@ -140,7 +130,6 @@ const DESKTOP_ICONS: DesktopIconItem[] = [
   { id: 'icon-about', title: 'About DS OS', appId: 'about', type: 'app', iconName: 'about' },
   { id: 'icon-projects', title: 'Projects', appId: 'projects', type: 'app', iconName: 'projects' },
   { id: 'icon-experience', title: 'Experience', appId: 'experience', type: 'app', iconName: 'experience' },
-  { id: 'icon-tech', title: 'Tech Stack', appId: 'tech-stack', type: 'app', iconName: 'tech-stack' },
   { id: 'icon-files', title: 'Files', appId: 'files', type: 'folder', iconName: 'files' },
   { id: 'icon-resume', title: 'Resume.pdf', appId: 'resume', type: 'file', iconName: 'resume' },
   { id: 'icon-terminal', title: 'Terminal', appId: 'terminal', type: 'app', iconName: 'terminal' },
@@ -316,8 +305,6 @@ export default function App() {
   // Open an app window
   const openApp = useCallback(
     (appId: AppId) => {
-      if (HIDDEN_APP_IDS.includes(appId)) return;
-
       soundManager.playWindowOpen();
       setWindows((prev) => {
         const current = prev[appId];
@@ -468,7 +455,7 @@ export default function App() {
 
       {/* 4. Desktop Grid of Icons */}
       <main className="absolute top-12 left-4 bottom-24 w-auto flex flex-col flex-wrap gap-2 pointer-events-auto z-10 p-2">
-        {DESKTOP_ICONS.filter((icon) => !HIDDEN_APP_IDS.includes(icon.appId)).map((icon) => (
+        {DESKTOP_ICONS.map((icon) => (
           <DesktopIcon
             key={icon.id}
             id={icon.id}
@@ -526,21 +513,6 @@ export default function App() {
           onUpdateSize={(size) => updateSize('experience', size)}
         >
           <ExperienceApp />
-      </WindowFrame>
-
-      <WindowFrame
-          {...windows['tech-stack']}
-          icon={APP_META['tech-stack'].icon}
-          iconColor={APP_META['tech-stack'].color}
-          glassBlur={settings.glassBlur}
-          onFocus={() => focusWindow('tech-stack')}
-          onClose={() => closeWindow('tech-stack')}
-          onMinimize={() => minimizeWindow('tech-stack')}
-          onMaximizeToggle={() => toggleMaximizeWindow('tech-stack')}
-          onUpdatePosition={(pos) => updatePosition('tech-stack', pos)}
-          onUpdateSize={(size) => updateSize('tech-stack', size)}
-        >
-          <TechStackApp />
       </WindowFrame>
 
       <WindowFrame

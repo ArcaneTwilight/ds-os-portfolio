@@ -41,14 +41,14 @@ export const PersonalApp: React.FC = () => {
   }, [fullscreenLocation]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 sm:p-6">
-      <section className="personal-section">
+    <div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden p-4 sm:p-6">
+      <section className="personal-section flex min-h-0 flex-1 flex-col">
         <div className="mb-4 flex items-center gap-2">
           <Image className="h-4 w-4 text-rose-300" />
           <h2 className="text-sm font-semibold text-white">Travel Gallery</h2>
         </div>
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(240px,1fr)]">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1.15fr)_minmax(180px,0.85fr)] gap-4">
+          <div className="grid min-h-0 grid-cols-2 content-start gap-3 overflow-y-auto pr-1 xl:grid-cols-3">
             {PERSONAL_DATA.travelLocations.map((location) => (
               <div key={location.id} className="relative min-w-0">
                 <button

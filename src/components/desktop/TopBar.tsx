@@ -4,6 +4,7 @@ import {
   Volume2, 
   VolumeX, 
   Sliders, 
+  FolderKanban,
   Layers, 
   Terminal, 
   FolderGit2, 
@@ -99,6 +100,15 @@ export const TopBar: React.FC<TopBarProps> = ({
 
       {/* Zone 2: Quick App Shortcuts */}
       <nav className="hidden md:flex items-center gap-1 text-slate-300">
+        <button
+          onClick={() => onOpenApp('projects')}
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors"
+          title="Open Projects"
+        >
+          <FolderKanban className="w-3.5 h-3.5 text-sky-400" />
+          <span>Projects</span>
+        </button>
+
         <button
           onClick={() => onOpenApp('experience')}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors"

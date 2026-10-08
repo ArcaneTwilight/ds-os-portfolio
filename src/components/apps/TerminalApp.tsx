@@ -63,7 +63,7 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
             <div><span className="text-emerald-400 font-mono w-28 inline-block">help</span> — Display this manual</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">about</span> — Show developer identity and specs</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">experience</span> — View career trajectory and roles</div>
-            <div><span className="text-emerald-400 font-mono w-28 inline-block">open [app|url]</span> — Launch an app or request an external link (about|experience|resume|customizer|files|personal|walkthrough)</div>
+            <div><span className="text-emerald-400 font-mono w-28 inline-block">open [app|url]</span> — Launch an app or request an external link (about|projects|experience|resume|customizer|files|personal|walkthrough)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">cat [file]</span> — Print file content (e.g. cat about.txt)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">wallpaper [name]</span> — Change wallpaper (aurora|cyberpunk|deep-space|slate|sunset)</div>
             <div><span className="text-emerald-400 font-mono w-28 inline-block">whoami</span> — Print current active user</div>
@@ -83,13 +83,18 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
         );
         break;
 
+      case 'experience':
+        onOpenApp('experience');
+        output = <div className="text-emerald-400">Launching application: experience...</div>;
+        break;
+
       case 'whoami':
         output = <div className="text-slate-200">deevann@ds-os (permissions: read, execute, inspect)</div>;
         break;
 
       case 'open':
         if (!arg) {
-          output = <div className="text-rose-400">Error: Please specify target app. Usage: open &lt;about|experience|resume|customizer|files&gt;</div>;
+          output = <div className="text-rose-400">Error: Please specify target app. Usage: open &lt;about|projects|experience|resume|customizer|files&gt;</div>;
         } else {
           if (/^https?:\/\//i.test(arg)) {
             onExternalLink(arg);
@@ -97,7 +102,7 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
             break;
           }
           const target = arg.toLowerCase() as AppId;
-          const validApps: AppId[] = ['about', 'experience', 'resume', 'customizer', 'files', 'personal', 'walkthrough'];
+          const validApps: AppId[] = ['about', 'projects', 'experience', 'resume', 'customizer', 'files', 'personal', 'walkthrough'];
           if (validApps.includes(target)) {
             onOpenApp(target);
             output = <div className="text-emerald-400">Launching application: {target}...</div>;

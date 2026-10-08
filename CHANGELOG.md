@@ -2,7 +2,22 @@
 
 Notable project changes are recorded here. Add an entry for every project-change commit, following the policy in [project-map.md](project-map.md#changelog-and-versioning).
 
-## [Unreleased]
+## [1.3.0] - 2026-10-08
+
+### Added
+- Added refreshed portfolio content across the Personal, Projects, Experience, Files, and Walkthrough apps.
+- Added supporting project imagery and media assets for the latest portfolio updates.
+
+### Changed
+- Updated the desktop shell and app surfaces to match the current portfolio experience, including navigation, launchers, dock, top bar, and file interactions.
+- Refined the visual and interaction polish across the portfolio shell, with updated data and responsive behavior for the latest content.
+
+### Fixed
+- Corrected inconsistencies in app launch, file navigation, terminal behavior, and resume access across the refreshed portfolio experience.
+- Improved desktop UI state handling to reduce duplicate or inconsistent interactions.
+
+### Documentation
+- Updated project documentation and release tracking to reflect the current portfolio structure and change process.
 
 ## [1.2.0] - 2026-10-05
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { 
+  FolderKanban,
   Layers, 
   FileText, 
   Sliders, 
@@ -23,6 +24,7 @@ interface DockAppDefinition {
 // Pinned to the dock at all times
 const PINNED_APPS: DockAppDefinition[] = [
   { id: 'files', label: 'Files', icon: FolderGit2, color: 'text-cyan-400' },
+  { id: 'projects', label: 'Projects', icon: FolderKanban, color: 'text-sky-400' },
   { id: 'terminal', label: 'Terminal', icon: Terminal, color: 'text-slate-200' },
   { id: 'customizer', label: 'Settings', icon: Sliders, color: 'text-purple-400' }
 ];

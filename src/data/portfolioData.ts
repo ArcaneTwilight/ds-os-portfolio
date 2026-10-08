@@ -3,189 +3,174 @@ import { ProjectItem, ExperienceItem, TechItem, FileItem, PersonalData } from '.
 export const DEVELOPER_PROFILE = {
   name: 'Deevann Shrestha',
   handle: '@deevannshrestha',
-  role: 'Software Delivery & Product Operations Specialist',
-  tagline: 'Software Engineer and Technical Delivery Specialist with 8+ years across mobile applications, enterprise systems, product support, and software releases.',
-  location: 'Philippines',
+  role: 'Technical Product Delivery Specialist | Mobile Application Release | Application Support',
+  tagline: 'Software Engineer and Technical Product Delivery Specialist with 5+ years of experience in mobile application delivery, application support, and software releases.',
+  location: 'Mandaluyong City, Philippines',
   email: 'deevann.shrestha@gmail.com',
   github: '',
   linkedin: 'https://linkedin.com/in/deevann-shrestha',
   x: 'https://linkedin.com/in/deevann-shrestha',
   phone: '+63 928 932 8102',
-  yearsExperience: '8+ Years',
-  status: 'Open to software delivery, product operations, mobile, and application support opportunities',
-  bio: `Software Engineer and Technical Delivery Specialist with 8+ years of professional experience in mobile applications, enterprise systems, product operations, software releases, and technical support. Bridges business and technical teams by translating requirements into actionable work, coordinating delivery, resolving issues, and improving process reliability.`
+  yearsExperience: '5+ Years',
+  status: 'Open to technical product delivery, mobile release, and application support opportunities',
+  bio: 'Software Engineer and Technical Product Delivery Specialist with 5+ years of experience in mobile application delivery, application support, and software releases. Built and released 30+ white label React Native applications for iOS and Android and managed delivery for more than 100 mobile app clients. Led a React Native upgrade, UI improvements, module enhancements and redesign, and AI feature implementations. Skilled in React Native, Xcode, Android Studio, App Store Connect, Google Play Console, team coordination, and stakeholder communication.'
 };
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
-    id: 'ir-app-portfolio',
-    title: 'Investor Relations App Portfolio',
-    tagline: 'End-to-end delivery for 110+ investor relations app clients across requirements, development, QA, and release.',
-    description: 'Supported the delivery lifecycle for a large investor relations application portfolio, coordinating requirements gathering, development handover, QA, and release execution across client-facing product work.',
+    id: 'company-nexus',
+    title: 'Company Nexus',
+    tagline: 'A private operations hub for company resources, team coordination, knowledge, and recurring work.',
+    description: 'Company Nexus brings internal tools, FAQs, developer knowledge, team contacts, calendars, company applications, and operational trackers into one searchable workspace. It is designed for internal operations and investor-relations teams, with shared Firebase data or local development storage.',
     category: 'Systems',
-    year: '2023–2026',
-    technologies: ['React Native', 'Mobile Release Management', 'QA', 'Client Support', 'Jira'],
+    year: '2026',
+    technologies: [
+      'React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Motion', 'Lucide',
+      'Node.js', 'Express', 'Vercel', 'Firebase Authentication', 'Cloud Firestore',
+      'Google Gemini', 'Zod', 'MCP SDK', 'D3', 'ExcelJS', 'React Markdown'
+    ],
+    mainTechnologies: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Firebase', 'Google Gemini'],
+    techStack: [
+      { area: 'Frontend', technologies: ['React 19', 'TypeScript', 'Vite'] },
+      { area: 'Styling & interaction', technologies: ['Tailwind CSS v4', 'Motion', 'Lucide icons'] },
+      { area: 'Backend', technologies: ['Node.js', 'Express', 'Vercel serverless endpoints'] },
+      { area: 'Authentication & data', technologies: ['Firebase Authentication', 'Cloud Firestore', 'localStorage fallback'] },
+      { area: 'AI', technologies: ['Google Gemini', 'Server-side tool calling', 'Knowledge retrieval'] },
+      { area: 'Validation & integrations', technologies: ['Zod', 'Model Context Protocol (MCP) SDK'] },
+      { area: 'Other libraries', technologies: ['D3', 'ExcelJS', 'React Markdown'] },
+      { area: 'Development & deployment', technologies: ['npm', 'TypeScript type-checking', 'esbuild', 'Vercel'] }
+    ],
     accentColor: '#38bdf8',
-    stats: [
-      { label: 'Clients Supported', value: '110+' },
-      { label: 'White-label Apps', value: '30+' },
-      { label: 'Portfolio Rollout', value: '~90%' }
-    ],
     features: [
-      'Handled end-to-end delivery for 110+ investor relations app clients including requirements, QA, release coordination, and client support',
-      'Built and released 30+ white-label React Native applications with end-to-end ownership',
-      'Served as product owner for feature upgrades, UI/UX improvements, module enhancements, and VAPT security testing',
-      'Acted as the primary liaison among Sales, QA, Development, and Client Support'
+      'Overview dashboard with service metrics, quick links, market references, and regional clocks',
+      'Searchable tools, FAQs, developer articles, knowledge documents, and team resources',
+      'Team directory, contact information, shared calendar, and company application directory',
+      'Application list with filters, saved views, configurable columns, comments, and spreadsheet export',
+      'Report-upload tracking, production trackers, external trackers, and editable Kanban boards',
+      'Firebase sign-in and shared Firestore data, with browser storage for local development',
+      'Gemini assistant with cited knowledge retrieval; proposed updates require user confirmation'
     ],
-    architectureNotes: 'Focused on product operations, delivery coordination, and release reliability for a broad mix of B2B investor relations applications and white-label mobile builds.'
-  },
-  {
-    id: 'ir-app-v3',
-    title: 'IR App v3 Rollout',
-    tagline: 'Led the IR App v3 evolution and rollout to approximately 90% of the client portfolio.',
-    description: 'Owned the rollout of the next-generation investor relations app experience, covering new product features, release alignment, and cross-functional coordination across client teams.',
-    category: 'Interface',
-    year: '2024–2026',
-    technologies: ['React Native', 'Product Ownership', 'Agile', 'Release Management', 'Stakeholder Coordination'],
-    accentColor: '#a855f7',
-    stats: [
-      { label: 'Portfolio Coverage', value: '~90%' },
-      { label: 'Major Features', value: 'Watchlist, AI Podcast, AI Search' },
-      { label: 'Delivery Scope', value: 'Cross-functional' }
+    extendedCapabilities: [
+      'Knowledge retrieval includes chunking, ranking, citations, caching, and evaluation tooling',
+      'Optional MCP server supports knowledge search, FAQ lookup, and update proposals',
+      'Supports local Express and Vite development alongside Vercel deployment'
     ],
-    features: [
-      'Led the rollout of IR App v3 across approximately 90% of the client portfolio',
-      'Coordinated delivery of a revamped watchlist, AI podcast, and AI Search',
-      'Ran sprint planning, biweekly alignment meetings, and weekly standups to prioritize execution and resolve production issues',
-      'Managed stakeholder alignment across product, development, QA, and support teams'
-    ],
-    architectureNotes: 'This work centered on product readiness, delivery governance, and the operational discipline required to roll out multiple product updates at scale.'
-  },
-  {
-    id: 'sap-pm-mdg',
-    title: 'SAP PM & MDG Support',
-    tagline: 'Supported a Canadian client’s SAP Plant Maintenance and Master Data Governance processes.',
-    description: 'Worked as an Application Development Analyst supporting enterprise application workflows, issue resolution, feature implementation, and cross-functional coordination in SAP PM and MDG environments.',
-    category: 'Systems',
-    year: '2021–2022',
-    technologies: ['SAP PM', 'SAP MDG', 'Data Governance', 'Application Support', 'Stakeholder Liaison'],
-    accentColor: '#10b981',
-    stats: [
-      { label: 'Enterprise Scope', value: 'SAP PM + MDG' },
-      { label: 'Support Model', value: 'On-call' },
-      { label: 'Cross-team Work', value: 'FI/CO · MM · PP · QM' }
-    ],
-    features: [
-      'Resolved application issues and implemented new features in SAP PM modules',
-      'Coordinated with FI/CO, MM, PP, and QM teams on cross-functional application work',
-      'Served as a liaison between corporate and operational stakeholders',
-      'Provided on-call support to maintain continuity across client environments'
-    ],
-    architectureNotes: 'Combined application support, data governance, and cross-functional business coordination to improve reliability in enterprise operations.'
-  },
-  {
-    id: 'quality-improvement',
-    title: 'Manufacturing Quality Improvement',
-    tagline: 'Reduced defects and improved yield through test analysis, root-cause action, and process auditing.',
-    description: 'Analyzed production test results across six IC product lines and collaborated with cross-functional teams to improve quality control and manufacturing efficiency.',
-    category: 'Systems',
-    year: '2019–2020',
-    technologies: ['Quality Engineering', 'Root-Cause Analysis', 'Automated Testing', 'Process Auditing'],
-    accentColor: '#f59e0b',
-    stats: [
-      { label: 'Product Lines', value: '6' },
-      { label: 'Defect Reduction', value: '3%' },
-      { label: 'Yield Improvement', value: '5%' }
-    ],
-    features: [
-      'Analyzed test results across six IC product lines and drove root-cause corrective actions',
-      'Reduced defects by 3% and improved yield by 5%',
-      'Audited production processes and modified automated testing systems with cross-functional teams',
-      'Strengthened quality control and process efficiency in manufacturing operations'
-    ],
-    architectureNotes: 'This experience reinforced structured problem-solving, process rigor, and data-based decision making in high-variance production environments.'
+    architectureNotes: 'Firebase Authentication and Cloud Firestore support team access and shared data. Local development can fall back to browser storage. Gemini uses server-side tool calling and knowledge retrieval; changes are proposed for review and only applied after explicit confirmation.',
+    screenshotUrl: '/images/projects/company-nexus.png',
+    audience: 'Internal team members, especially operations and investor-relations teams coordinating company applications, reporting, contacts, schedules, and shared knowledge.',
+    designNotes: 'A cyber-inspired operations dashboard with technical typography, subtle grids, ambient gradients, glass-style panels, theme-aware accents, light and dark modes, and reduced-motion support.',
+    projectStatus: 'Demo access available',
+    demoAccess: { username: 'company@mail.com', password: 'password' }
   }
 ];
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
-    id: 'exp-1',
-    role: 'Software Engineer / Product Support Specialist',
+    id: 'euroland-software-engineer',
+    role: 'Software Engineer',
     company: 'Euroland.com AB',
-    period: 'June 2023 — July 2026',
+    period: 'Jul 2024 – Jul 2026',
     location: 'Metro Manila, Philippines',
-    category: 'Systems',
-    description: 'Delivered and supported a portfolio of investor relations mobile applications, coordinating delivery across product, QA, development, and client support.',
+    category: 'Mobile Delivery',
+    description: 'Built, configured, tested, and released white label React Native investor relations apps for iOS and Android, while coordinating product delivery and production support.',
     highlights: [
-      'Handled end-to-end delivery for 110+ investor relations app clients, including requirements gathering, development handover, QA, release coordination, and client-facing support',
-      'Built and released 30+ white-label React Native applications with end-to-end ownership',
-      'Served as Product Owner for feature upgrades including React Native version upgrades, UI/UX improvements, module enhancements, and VAPT security testing',
-      'Led the IR App v3 rollout to approximately 90% of the client portfolio, including a revamped watchlist, AI podcast, and AI Search'
+      'Built, configured, tested, and released 30+ white label React Native investor relations mobile applications for iOS and Android for international clients.',
+      'Managed mobile releases using Xcode, Android Studio, App Store Connect, and Google Play Console, including build configuration, code signing, provisioning, testing, store submission, and production release.',
+      'Investigated application and deployment issues across APIs, XML, JSON, TypeScript, JavaScript, HTML, CSS, and platform specific configuration files.',
+      'Coordinated with backend developers, QA, Production, and clients to resolve issues, validate application requirements, and address findings related to Vulnerability Assessment and Penetration Testing or mobile app security.',
+      'Supported the Investor Relations App V3 rollout to approximately 90% of the client application portfolio.',
+      'Performed Product Owner duties by coordinating sprint planning, user story creation, backlog coordination, feature prioritization, and release planning.',
+      'Led React Native upgrade, user interface improvements, module enhancements, module redesign, and AI feature implementations.',
+      'Created RCA, incident reports, infrastructure documents, business requirements documents, and mobile app launch roadmaps for complex client requests.',
+      'Created mobile app analytics reports and an internal web application for uploading analytics data, generating reports, and reviewing AI assisted insights before client reporting.',
+      'Analyzed mobile app KPIs including downloads, page views, sessions, user engagement, traffic sources, conversion rates, uninstall rates, persistence rates, daily active users, monthly active users, and push notification performance.',
+      'Explored PostHog analytics implementation and created React dashboards using HogQL.'
     ],
-    technologies: ['React Native', 'Product Ownership', 'QA', 'Release Management', 'Client Support', 'Jira', 'Confluence']
+    technologies: ['React Native', 'Xcode', 'Android Studio', 'App Store Connect', 'Google Play Console', 'PostHog', 'HogQL', 'TypeScript', 'JavaScript']
   },
   {
-    id: 'exp-2',
-    role: 'Application Development Analyst / Associate',
-    company: 'Accenture Inc.',
-    period: 'June 2021 — October 2022',
+    id: 'euroland-product-support',
+    role: 'Product Support Specialist',
+    company: 'Euroland.com AB',
+    period: 'Jun 2023 – Jun 2024',
     location: 'Metro Manila, Philippines',
-    category: 'Systems',
+    category: 'Application Support',
+    description: 'Managed delivery for more than 100 investor relations app clients, from requirements collection through release and post-release support.',
+    highlights: [
+      'Managed application delivery for more than 100 investor relations app clients from requirements collection through development, QA, testing, release, and post release support.',
+      'Coordinated client branding, app configuration, features, content, reports, and other assets with Sales, Customer Success, Development, QA, and Production teams.',
+      'Translated client requirements into technical handover documents, Trello tasks, Figma requirements, and validation expectations, and uploaded files through Filezilla FTP.',
+      'Monitored production issues, coordinated investigation and escalation, and followed through until resolution.',
+      'Performed pre release checks, coordinated internal, external, and production testing, and provided post-launch app support.',
+      'Led weekly mobile production standups to review priorities, blockers, risks, defects, and delivery status.'
+    ],
+    technologies: ['Application Support', 'Release Coordination', 'QA', 'Trello', 'Figma', 'FileZilla', 'Stakeholder Communication']
+  },
+  {
+    id: 'accenture-application-development-analyst',
+    role: 'Application Development Analyst',
+    company: 'Accenture Inc.',
+    period: 'Jun 2021 – Oct 2022',
+    location: 'Metro Manila, Philippines',
+    category: 'Enterprise Systems',
     description: 'Supported a Canadian client’s SAP Plant Maintenance and Master Data Governance processes while resolving application issues and implementing enhancements.',
     highlights: [
-      'Supported a Canadian client’s SAP Plant Maintenance and Master Data Governance processes',
-      'Resolved application issues, implemented new features, and customized SAP PM modules',
-      'Coordinated with FI/CO, MM, PP, and QM teams on cross-functional application work',
-      'Provided on-call support to maintain continuity across client environments'
+      'Supported Canadian clients using SAP Plant Maintenance and Master Data Governance processes.',
+      'Investigated SAP application issues, analyzed business impact, implemented changes, and monitored outcomes.',
+      'Customized SAP Plant Maintenance modules according to client requirements and business processes.',
+      'Monitored integration points across SAP Plant Maintenance, Production Planning, Materials Management, Financial Accounting and Controlling, and Quality Management.',
+      'Implemented feature enhancements and coordinated issue resolution with SAP Financial Accounting and Controlling and Materials Management teams.',
+      'Supported Master Data Governance migration by validating records, performing data quality checks, and aligning migrated data with governance standards.',
+      'Provided on call support and acted as liaison between operational users, corporate stakeholders, and SAP technical and functional teams.'
     ],
-    technologies: ['SAP PM', 'SAP MDG', 'Data Governance', 'Application Support', 'Stakeholder Coordination']
+    technologies: ['SAP Plant Maintenance', 'SAP Master Data Governance', 'Production Planning', 'Materials Management', 'Financial Accounting and Controlling', 'Quality Management']
   },
   {
-    id: 'exp-3',
+    id: 'ti-manufacturing-product-engineer',
     role: 'Manufacturing Product Engineer',
     company: 'Texas Instruments',
-    period: 'December 2019 — December 2020',
+    period: 'Dec 2019 – Dec 2020',
     location: 'Baguio, Philippines',
-    category: 'Systems',
-    description: 'Analyzed manufacturing test results and improved process quality across IC product lines using root-cause analysis and corrective action.',
+    category: 'Manufacturing',
+    description: 'Monitored yield and defect KPIs across six integrated circuit product lines and improved manufacturing quality and process efficiency.',
     highlights: [
-      'Analyzed test results across six IC product lines and drove root-cause corrective actions',
-      'Reduced defects by 3% and improved yield by 5%',
-      'Audited production processes and modified automated testing systems with cross-functional teams',
-      'Strengthened quality control and process efficiency'
+      'Monitored yield and defect KPIs across six integrated circuit product lines and verified compliance with manufacturing and quality requirements.',
+      'Analyzed test results to identify defect patterns and root causes, contributing to a reported 3% reduction in defects and 5% improvement in yield.',
+      'Improved test environments, test cases, and automated testing systems to strengthen quality control and process efficiency.',
+      'Audited production stages, documented process deviations, and coordinated corrective actions with raw materials, equipment, test, and manufacturing teams.'
     ],
-    technologies: ['Quality Engineering', 'Root-Cause Analysis', 'Automated Testing', 'Manufacturing Processes']
+    technologies: ['Yield Analysis', 'Defect Analysis', 'Automated Testing', 'Quality Engineering', 'Root-Cause Analysis']
   },
   {
-    id: 'exp-4',
+    id: 'ti-software-developer-intern',
     role: 'Software Developer Intern',
     company: 'Texas Instruments',
-    period: 'June 2018 — July 2018',
+    period: 'Jun 2018 – Jul 2018',
     location: 'Baguio, Philippines',
-    category: 'Frontend',
-    description: 'Built and tested a Spring-based Java application for a manufacturing machine product line.',
+    category: 'Software Development',
+    description: 'Supported and tested a Spring based Java application supporting a manufacturing machine product line.',
     highlights: [
-      'Built and tested a Spring-based Java application to support a manufacturing machine product line',
-      'Used HTML/CSS, SQL, Maven, Tomcat, and JUnit',
-      'Improved data handling and workflow reliability'
+      'Supported and tested a Spring based Java application supporting a manufacturing machine product line.',
+      'Developed HTML and CSS interfaces, created SQL queries, and used Maven for application packaging.',
+      'Supported deployment using Apache Tomcat and created JUnit tests for application validation and regression testing.'
     ],
-    technologies: ['Java', 'Spring', 'SQL', 'HTML', 'CSS', 'Maven', 'JUnit']
+    technologies: ['Java', 'Spring', 'HTML', 'CSS', 'SQL', 'Maven', 'Apache Tomcat', 'JUnit']
   },
   {
-    id: 'exp-5',
+    id: 'taazacoupons-content-analyst',
     role: 'Content Analyst',
     company: 'TaazaCoupons',
-    period: 'April 2014 — December 2016',
+    period: 'Apr 2014 – Dec 2016',
     location: 'Remote',
-    category: 'Frontend',
+    category: 'Content Operations',
     description: 'Managed merchant listings and promotional content while improving SEO performance and digital marketing consistency.',
     highlights: [
-      'Managed and maintained accuracy across 350+ merchant listings and 1,750+ associated coupons in online stores',
-      'Applied SEO best practices that drove approximately 3x traffic growth',
-      'Produced social media content for Twitter, Facebook, and Instagram',
-      'Standardized advertising copy and promotional imagery using Photoshop'
+      'Managed 350+ merchant listings and their associated coupons daily while maintaining content accuracy.',
+      'Applied SEO practices to product listings and images, contributing to approximately 3x traffic growth.',
+      'Created advertising copy, product descriptions, website content, and social media content for Twitter, Facebook, Instagram, and YouTube.',
+      'Created promotional images using Photoshop while maintaining consistent brand and content standards.'
     ],
-    technologies: ['SEO', 'Content Operations', 'Photoshop', 'Social Media Marketing', 'Content Standardization']
+    technologies: ['SEO', 'Photoshop', 'Content Writing', 'Social Media', 'Content Operations']
   }
 ];
 
@@ -348,6 +333,16 @@ export const PERSONAL_DATA: PersonalData = {
       mapY: 16559
     },
     {
+      id: 'hundred-islands',
+      title: 'Hundred Islands',
+      city: 'Pangasinan',
+      country: 'Philippines',
+      src: '/images/personal/Hundred-Islands_Pangasinan_Philippines.jpg',
+      alt: 'Green island surrounded by clear water at Hundred Islands',
+      mapX: 12691,
+      mapY: 17311
+    },
+    {
       id: 'mandaluyong-skyline',
       title: 'Mandaluyong Skyline',
       city: 'Mandaluyong',
@@ -356,6 +351,26 @@ export const PERSONAL_DATA: PersonalData = {
       alt: 'Mandaluyong city skyline at sunset',
       mapX: 16423,
       mapY: 23217
+    },
+    {
+      id: 'peoples-park',
+      title: "People's Park in the Sky",
+      city: 'Tagaytay',
+      country: 'Philippines',
+      src: "/images/personal/People's-Park-in-the-Sky_Tagaytay_Philippines.jpg",
+      alt: "Panoramic view from People's Park in the Sky",
+      mapX: 16366,
+      mapY: 24829
+    },
+    {
+      id: 'chocolate-hills',
+      title: 'Chocolate Hills',
+      city: 'Bohol',
+      country: 'Philippines',
+      src: '/images/personal/Chocolate-Hills_Bohol_Philippines.jpg',
+      alt: 'Panoramic view across the Chocolate Hills in Bohol',
+      mapX: 27340,
+      mapY: 40386
     },
     {
       id: 'boudhanath',
@@ -406,36 +421,6 @@ export const PERSONAL_DATA: PersonalData = {
       alt: 'Petronas Twin Towers in Kuala Lumpur',
       mapX: 132.4,
       mapY: 254.5
-    },
-    {
-      id: 'peoples-park',
-      title: "People's Park in the Sky",
-      city: 'Tagaytay',
-      country: 'Philippines',
-      src: "/images/personal/People's-Park-in-the-Sky_Tagaytay_Philippines.jpg",
-      alt: "Panoramic view from People's Park in the Sky",
-      mapX: 16366,
-      mapY: 24829
-    },
-    {
-      id: 'hundred-islands',
-      title: 'Hundred Islands',
-      city: 'Pangasinan',
-      country: 'Philippines',
-      src: '/images/personal/Hundred-Islands_Pangasinan_Philippines.jpg',
-      alt: 'Green island surrounded by clear water at Hundred Islands',
-      mapX: 12691,
-      mapY: 17311
-    },
-    {
-      id: 'chocolate-hills',
-      title: 'Chocolate Hills',
-      city: 'Bohol',
-      country: 'Philippines',
-      src: '/images/personal/Chocolate-Hills_Bohol_Philippines.jpg',
-      alt: 'Panoramic view across the Chocolate Hills in Bohol',
-      mapX: 27340,
-      mapY: 40386
     }
   ],
   spotifyPlaylistUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator',
@@ -444,51 +429,60 @@ export const PERSONAL_DATA: PersonalData = {
 
 export const VIRTUAL_FILES: FileItem[] = [
   {
+    id: 'folder-projects',
+    name: 'Projects',
+    type: 'folder',
+    size: '1 item',
+    updatedAt: '2026-10-06',
+    appId: 'projects'
+  },
+  {
     id: 'folder-exp',
     name: 'Experience',
     type: 'folder',
-    size: '5 items',
-    updatedAt: '2026-09-29',
+    size: '6 items',
+    updatedAt: '2026-10-08',
     appId: 'experience'
   },
   {
     id: 'file-resume',
     name: 'Resume.pdf',
     type: 'pdf',
-    size: '224 KB',
-    updatedAt: '2026-09-29',
+    size: '113 KB',
+    updatedAt: '2026-10-08',
     appId: 'resume'
   },
   {
     id: 'file-about',
     name: 'About.txt',
     type: 'txt',
-    size: '2.1 KB',
-    updatedAt: '2026-09-29',
+    size: '1.4 KB',
+    updatedAt: '2026-10-08',
     appId: 'about',
     content: `DS OS // DEVELOPER PROFILE
 =====================================================
 
 NAME: Deevann Shrestha
-PRIMARY POSITIONING: Software Delivery and Product Operations Specialist
-OTHER POSITIONING: Software Engineer; Technical Delivery Specialist; Product Support Specialist; Product Owner; Application Development Analyst; Manufacturing Product Engineer
-LOCATION: Philippines
+PRIMARY POSITIONING: Technical Product Delivery Specialist | Mobile Application Release | Application Support
+OTHER POSITIONING: Software Engineer; Product Support Specialist; Application Development Analyst; Manufacturing Product Engineer
+LOCATION: Mandaluyong City, Philippines
 PHONE: +63 928 932 8102
 EMAIL: deevann.shrestha@gmail.com
 LINKEDIN: https://linkedin.com/in/deevann-shrestha
+WEBSITE: ds-os-portfolio.vercel.app
 EDUCATION: BS Electronics Engineering (Saint Louis University)
 LICENSE: Licensed Electronics Engineer, 2020–present; valid until 2028
-EXPERIENCE: 8+ years
+EXPERIENCE: 5+ years
 
 SUMMARY:
-Software Engineer and Technical Delivery Specialist with 8+ years of experience in mobile applications, enterprise systems, product operations, software releases, and technical support. Strong in stakeholder communication, structured problem solving, cross-functional coordination, and end-to-end ownership.
+Software Engineer and Technical Product Delivery Specialist with 5+ years of experience in mobile application delivery, application support, and software releases. Built and released 30+ white label React Native applications for iOS and Android and managed delivery for more than 100 mobile app clients.
 
 SPECIALTIES:
-- Product ownership and requirements gathering
-- Release management and QA coordination
-- React Native mobile app delivery and deployment
-- SAP PM / SAP MDG support and application issue resolution
-- Root-cause analysis and quality improvement
+- React Native application delivery and mobile releases for iOS and Android
+- Product ownership, requirements gathering, sprint planning, and release planning
+- Application support, incident management, and root-cause analysis
+- SAP Plant Maintenance and Master Data Governance support
+- Mobile app analytics, dashboards, and AI feature implementations
 
 Type 'help' in Terminal or open the Resume app for the full profile.
 `
@@ -498,82 +492,34 @@ Type 'help' in Terminal or open the Resume app for the full profile.
 export const RESUME_DATA = {
   header: {
     name: 'Deevann Shrestha',
-    title: 'Software Delivery & Product Operations Specialist',
-    contact: '+63 928 932 8102 · deevann.shrestha@gmail.com · linkedin.com/in/deevann-shrestha',
-    summary: 'Software Delivery and Product Operations Specialist with 8+ years of experience across mobile applications, enterprise systems, product support, and software releases. Built and released 30+ white-label React Native apps, supported end-to-end delivery for 110+ investor relations app clients, and led an IR App v3 rollout to approximately 90% of the client portfolio.'
+    title: 'Technical Product Delivery Specialist | Mobile Application Release | Application Support',
+    location: 'Mandaluyong City, Philippines',
+    email: 'deevann.shrestha@gmail.com',
+    phone: '+63 928 932 8102',
+    linkedin: 'linkedin.com/in/deevann-shrestha',
+    website: 'ds-os-portfolio.vercel.app',
+    summary: 'Software Engineer and Technical Product Delivery Specialist with 5+ years of experience in mobile application delivery, application support, and software releases. Built and released 30+ white label React Native applications for iOS and Android, managed delivery for more than 100 mobile app clients, and led React Native upgrades, UI improvements, module enhancements and redesign, and AI feature implementations.'
   },
   skills: [
-    { label: 'Product & Delivery', items: 'Requirements Gathering; Backlog Prioritization; Sprint Planning; Release Management; Agile/Scrum; Stakeholder Alignment; QA; Regression Testing; Incident Management; Root-Cause Analysis' },
-    { label: 'Software & Mobile', items: 'Java; JavaScript; TypeScript; Python; SQL; HTML5; CSS; React Native mobile applications' },
-    { label: 'Enterprise & Data', items: 'SAP Master Data Governance; SAP Plant Maintenance; Master Data Management; Data Governance; Data Validation; Excel; Tableau; App Store Connect Analytics; Google Play Console Analytics; Microsoft Clarity' },
-    { label: 'Collaboration & Tools', items: 'Git; GitLab; Jira; Confluence; Trello; ServiceNow; Figma; Canva; Photoshop; AutoCAD; FileZilla' },
-    { label: 'AI & Productivity', items: 'Cursor; Google AI Studio; Google Stitch; Perplexity; Claude; Gemini; PostHog' }
+    { label: 'Mobile Application Delivery', items: 'React Native; Xcode; Android Studio; App Store Connect; Google Play Console; TestFlight; iOS and Android deployment; code signing; provisioning profiles; certificates; entitlements; internal and external testing; release validation' },
+    { label: 'Application Support and Operations', items: 'Application troubleshooting; API investigation; incident management; issue triage; root-cause analysis; production support; regression testing; configuration analysis; technical escalation; release coordination; change coordination; service-level tracking' },
+    { label: 'Programming and Development', items: 'JavaScript; TypeScript; Python; SQL; HTML5; CSS; XML; JSON' },
+    { label: 'Enterprise Applications', items: 'SAP Plant Maintenance; SAP Master Data Governance; SAP application support' },
+    { label: 'Product and Delivery', items: 'Requirements gathering; user stories; technical handover; backlog coordination; sprint planning; Kanban; Agile delivery; release planning; QA coordination; stakeholder communication; risk and dependency tracking' },
+    { label: 'Analytics and Reporting', items: 'Excel; pivot tables; Google Sheets; App Store Connect Analytics; Google Play Console Analytics; Microsoft Clarity; PostHog; HogQL; engagement analysis; conversion analysis; retention analysis; dashboard development' },
+    { label: 'AI Tools', items: 'Stitch for AI-assisted UI design and prototyping; Google AI Studio and v0 for prototyping and initial application generation; Claude for software assistance; VS Code Copilot and Cursor for code completion and development support; Gemini for context analysis; ChatGPT for general AI assistance and image generation; Perplexity for research; ElevenLabs for AI text-to-speech; Vercel for hosting and deployment' },
+    { label: 'Tools and Platforms', items: 'Git; GitLab; Jira; Confluence; Trello; ServiceNow; Microsoft Teams; FileZilla; Figma; Photoshop; Canva' }
   ],
-  experience: [
-    {
-      company: 'Euroland.com AB',
-      role: 'Software Engineer / Product Support Specialist',
-      dates: 'June 2023 — July 2026',
-      location: 'Client-facing delivery',
-      bullets: [
-        'Handled end-to-end delivery for 110+ investor relations app clients, including requirements gathering, development handover, QA, release coordination, and client-facing support.',
-        'Built and released 30+ white-label React Native applications with end-to-end ownership.',
-        'Served as Product Owner for feature upgrades, including React Native version upgrades, UI/UX improvements, module enhancements, and VAPT security testing.',
-        'Led the IR App v3 rollout to approximately 90% of the client portfolio, coordinating delivery of a revamped watchlist, AI podcast, and AI Search.'
-      ]
-    },
-    {
-      company: 'Accenture Inc.',
-      role: 'Application Development Analyst / Associate',
-      dates: 'June 2021 — October 2022',
-      location: 'SAP support',
-      bullets: [
-        'Supported a Canadian client’s SAP Plant Maintenance and Master Data Governance processes.',
-        'Resolved application issues, implemented new features, and customized SAP PM modules.',
-        'Coordinated with FI/CO, MM, PP, and QM teams on cross-functional application work.',
-        'Served as liaison between corporate and operational stakeholders and provided on-call support across client environments.'
-      ]
-    },
-    {
-      company: 'Texas Instruments',
-      role: 'Manufacturing Product Engineer',
-      dates: 'December 2019 — December 2020',
-      location: 'Manufacturing quality',
-      bullets: [
-        'Analyzed test results across six IC product lines and drove root-cause corrective actions that reduced defects by 3% and improved yield by 5%.',
-        'Audited production processes and modified automated testing systems with cross-functional teams.',
-        'Strengthened quality control and process efficiency through structured issue analysis and corrective action.'
-      ]
-    },
-    {
-      company: 'Texas Instruments',
-      role: 'Software Developer Intern',
-      dates: 'June 2018 — July 2018',
-      location: 'Engineering intern',
-      bullets: [
-        'Built and tested a Spring-based Java application to support a manufacturing machine product line.',
-        'Used HTML/CSS, SQL, Maven, Tomcat, and JUnit to improve data handling and workflow reliability.'
-      ]
-    },
-    {
-      company: 'TaazaCoupons',
-      role: 'Content Analyst',
-      dates: 'April 2014 — December 2016',
-      location: 'SEO and content operations',
-      bullets: [
-        'Managed and maintained accuracy across 350+ merchant listings and 1,750+ associated coupons in online stores.',
-        'Applied SEO best practices that drove approximately 3x traffic growth.',
-        'Produced social media content for Twitter, Facebook, and Instagram and standardized advertising copy and promotional imagery using Photoshop.'
-      ]
-    }
-  ],
+  experience: EXPERIENCE_DATA.map(({ company, role, period, highlights }) => ({
+    company,
+    role,
+    dates: period,
+    bullets: highlights
+  })),
   education: {
     degree: 'Bachelor of Science in Electronics Engineering',
     institution: 'Saint Louis University',
-    year: '2014–2019',
-    honors: 'Licensed Electronics Engineer (2020–present; valid until 2028)'
+    year: '2014 – 2019'
   },
-  certifications: [
-    'Licensed Electronics Engineer, 2020–present; valid until 2028'
-  ]
+  licensure: 'Licensed Electronics Engineer · 2020 – present (Valid until 2028)'
 };

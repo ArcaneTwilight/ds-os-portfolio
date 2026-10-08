@@ -6,7 +6,6 @@ import {
   FileText, 
   Sliders, 
   FolderGit2, 
-  HardDrive,
   Sparkles,
   UserRound,
   Play,
@@ -29,7 +28,6 @@ const ICON_MAP: Record<string, LucideIcon> = {
   about: Sparkles,
   projects: FolderKanban,
   experience: Layers,
-  'tech-stack': HardDrive,
   resume: FileText,
   customizer: Sliders,
   files: FolderGit2,
@@ -56,12 +54,6 @@ const COLOR_MAP: Record<string, { bg: string; border: string; glow: string; text
     border: 'border-emerald-400/30',
     glow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.25)]',
     text: 'text-emerald-300'
-  },
-  'tech-stack': {
-    bg: 'from-amber-500/20 to-orange-600/20',
-    border: 'border-amber-400/30',
-    glow: 'group-hover:shadow-[0_0_20px_rgba(245,158,11,0.25)]',
-    text: 'text-amber-300'
   },
   resume: {
     bg: 'from-indigo-500/20 to-violet-600/20',
@@ -117,17 +109,12 @@ export const DesktopIcon: React.FC<DesktopIconProps> = ({
     e.stopPropagation();
     onSelect(id);
     soundManager.playClick(600, 0.02);
-  };
-
-  const handleDoubleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
     onOpen(appId);
   };
 
   return (
     <div
       onClick={handleClick}
-      onDoubleClick={handleDoubleClick}
       className={`group relative flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-150 cursor-pointer w-24 select-none ${
         isSelected
           ? 'bg-white/15 backdrop-blur-md shadow-lg ring-1 ring-white/30'

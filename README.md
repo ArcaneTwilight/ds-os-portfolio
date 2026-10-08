@@ -10,6 +10,7 @@ DS OS is an interactive, single-screen portfolio for Deevann Shrestha, presented
 - Desktop customization for wallpaper, theme, blur, contrast, particles, grid, and ambient audio
 - Settings persisted in browser local storage; no account or backend required
 - Static portfolio and assets served from the `public/` directory
+- The Projects app showcases Company Nexus, with its screenshot in `public/images/projects/`
 - Travel gallery photos are stored in `public/images/personal/`, and country map SVGs are stored in `public/images/maps/`; update `PERSONAL_DATA.travelLocations` in `src/data/portfolioData.ts` when replacing or adding photos and their map coordinates
 
 ## Built with
