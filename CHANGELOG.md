@@ -2,6 +2,15 @@
 
 Notable project changes are recorded here. Add an entry for every project-change commit, following the policy in [project-map.md](project-map.md#changelog-and-versioning).
 
+## [1.4.0] - 2026-10-08
+
+### Changed
+- Prepared the project for the next release by aligning the package metadata with the active changelog version.
+- Updated the release notes to capture the current version cadence and release handoff.
+
+### Documentation
+- Recorded the upcoming release entry to keep version history aligned with the published portfolio updates.
+
 ## [1.3.0] - 2026-10-08
 
 ### Added

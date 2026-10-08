@@ -204,7 +204,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
             }}
             title="Close"
             className="w-3.5 h-3.5 rounded-full bg-rose-500/80 hover:bg-rose-500 flex items-center justify-center text-rose-950 transition-colors group/btn shadow-xs"
-            aria-label="Close Window"
+            aria-label={`Close ${title}`}
           >
             <X className="w-2.5 h-2.5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
           </button>
@@ -218,7 +218,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
             }}
             title="Minimize"
             className="w-3.5 h-3.5 rounded-full bg-amber-500/80 hover:bg-amber-500 flex items-center justify-center text-amber-950 transition-colors group/btn shadow-xs"
-            aria-label="Minimize Window"
+            aria-label={`Minimize ${title}`}
           >
             <Minus className="w-2.5 h-2.5 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
           </button>
@@ -232,7 +232,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({
             }}
             title={viewportMaximized ? 'Restore' : 'Maximize'}
             className="window-maximize-control w-3.5 h-3.5 rounded-full bg-emerald-500/80 hover:bg-emerald-500 flex items-center justify-center text-emerald-950 transition-colors group/btn shadow-xs"
-            aria-label={viewportMaximized ? 'Restore Window' : 'Maximize Window'}
+            aria-label={viewportMaximized ? `Restore ${title}` : `Maximize ${title}`}
           >
             {viewportMaximized ? (
               <Copy className="w-2 h-2 opacity-0 group-hover/btn:opacity-100 transition-opacity" />

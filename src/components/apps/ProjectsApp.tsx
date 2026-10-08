@@ -34,6 +34,7 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
           <button
             onClick={() => setActiveProject(null)}
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
+            aria-label="Back to projects overview"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Projects Overview</span>
@@ -247,6 +248,7 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-400/50"
+            aria-label="Search projects"
           />
         </div>
       </div>
@@ -308,6 +310,7 @@ export const ProjectsApp: React.FC<{ onExternalLink: (url: string) => void }> = 
                   type="button"
                   onClick={() => setActiveProject(project)}
                   className="self-start inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500/20 border border-sky-400/30 hover:bg-sky-500/30 text-xs text-sky-200 font-medium transition-colors"
+                  aria-label={`More details about ${project.title}`}
                 >
                   More details
                   <span aria-hidden="true">→</span>

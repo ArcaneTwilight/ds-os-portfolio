@@ -216,6 +216,7 @@ export const TerminalApp: React.FC<TerminalAppProps> = ({ onOpenApp, onSetWallpa
           autoFocus
           spellCheck={false}
           autoComplete="off"
+          aria-label="Terminal command"
         />
       </form>
 

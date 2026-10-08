@@ -112,6 +112,7 @@ export const SpatialMenu: React.FC<SpatialMenuProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 bg-white/10 border border-white/10 rounded-lg text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-400/50"
+            aria-label="Search applications and documents"
             autoFocus
           />
         </div>
@@ -137,6 +138,8 @@ export const SpatialMenu: React.FC<SpatialMenuProps> = ({
                   onClose();
                 }}
                 className="w-full flex items-center gap-3 px-2.5 py-2 rounded-xl text-left hover:bg-white/10 transition-colors group"
+                data-ph-capture-attribute-app-id={app.id}
+                data-ph-capture-attribute-app-name={app.title}
               >
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/15">
                   <Icon className={`w-4 h-4 ${app.color}`} />

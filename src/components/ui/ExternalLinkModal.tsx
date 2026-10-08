@@ -26,7 +26,7 @@ export const ExternalLinkModal: React.FC<ExternalLinkModalProps> = ({ url, onCon
             <p className="mt-1 text-xs text-slate-400">This link opens outside the portfolio.</p>
           </div>
         </div>
-        <button type="button" onClick={onCancel} className="rounded-md p-1 text-slate-400 hover:bg-white/10 hover:text-white" aria-label="Cancel">
+        <button type="button" onClick={onCancel} className="rounded-md p-1 text-slate-400 hover:bg-white/10 hover:text-white" aria-label="Cancel opening external link">
           <X className="h-4 w-4" />
         </button>
       </div>

@@ -12,6 +12,7 @@ DS OS is an interactive, single-screen portfolio for Deevann Shrestha, presented
 - Static portfolio and assets served from the `public/` directory
 - The Projects app showcases Company Nexus, with its screenshot in `public/images/projects/`
 - Travel gallery photos are stored in `public/images/personal/`, and country map SVGs are stored in `public/images/maps/`; update `PERSONAL_DATA.travelLocations` in `src/data/portfolioData.ts` when replacing or adding photos and their map coordinates
+- Optional PostHog analytics, enabled only when a project key is configured
 
 ## Built with
 
@@ -19,6 +20,7 @@ DS OS is an interactive, single-screen portfolio for Deevann Shrestha, presented
 - Vite 8
 - Tailwind CSS 4
 - Lucide React icons and Motion
+- PostHog JS and its React provider
 
 ## Development
 
@@ -35,6 +37,10 @@ npm run dev
 ```
 
 Vite serves the app at http://localhost:3000.
+
+### PostHog analytics
+
+Analytics are disabled unless `VITE_POSTHOG_KEY` is set. Copy `.env.example` to `.env.local` and add your PostHog project key. `VITE_POSTHOG_HOST` is optional and defaults to `https://us.i.posthog.com`; set it when using another PostHog region or a self-hosted instance. These are client-side Vite variables, so only use a PostHog project key intended for browser use.
 
 Available checks and build commands:
 
@@ -53,7 +59,7 @@ This is a static Vite app. The included `vercel.json` configures the SPA fallbac
    - Build command: `npm run build`
    - Output directory: `dist`
    - Install command: `npm install` (Vercel can also use the committed lockfile automatically)
-3. Deploy. No environment variables are required for the current app.
+3. Deploy. Set `VITE_POSTHOG_KEY` in the deployment environment to enable PostHog analytics. Optionally set `VITE_POSTHOG_HOST` for a non-default PostHog host.
 
 Do not commit local environment files or credentials. `.env.example` is a safe template; real `.env` files are ignored by Git.
 

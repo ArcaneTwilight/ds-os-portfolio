@@ -60,6 +60,7 @@ export const TechStackApp: React.FC = () => {
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`tech-filter-pill ${selectedCategory === cat ? 'tech-filter-active' : ''}`}
+              aria-pressed={selectedCategory === cat}
             >
               {cat}
             </button>
@@ -74,6 +75,7 @@ export const TechStackApp: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
+            aria-label="Search technologies"
           />
         </div>
       </div>

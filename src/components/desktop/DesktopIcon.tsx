@@ -105,7 +105,7 @@ export const DesktopIcon: React.FC<DesktopIconProps> = ({
   const IconComponent = ICON_MAP[iconName] || FolderKanban;
   const colors = COLOR_MAP[iconName] || COLOR_MAP.projects;
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     onSelect(id);
     soundManager.playClick(600, 0.02);
@@ -113,20 +113,17 @@ export const DesktopIcon: React.FC<DesktopIconProps> = ({
   };
 
   return (
-    <div
+    <button
+      type="button"
       onClick={handleClick}
-      className={`group relative flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-150 cursor-pointer w-24 select-none ${
+      className={`group relative flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-150 cursor-pointer w-24 select-none border-0 text-inherit ${
         isSelected
           ? 'bg-white/15 backdrop-blur-md shadow-lg ring-1 ring-white/30'
           : 'hover:bg-white/10 hover:backdrop-blur-sm'
       }`}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          onOpen(appId);
-        }
-      }}
+      aria-label={`Open ${label}`}
+      data-ph-capture-attribute-app-id={appId}
+      data-ph-capture-attribute-app-name={label}
     >
       {/* Icon Frame */}
       <div
@@ -139,6 +136,6 @@ export const DesktopIcon: React.FC<DesktopIconProps> = ({
       <span className="mt-2 text-xs font-medium text-slate-200 tracking-wide text-center px-1.5 py-0.5 rounded truncate max-w-full drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
         {label}
       </span>
-    </div>
+    </button>
   );
 };

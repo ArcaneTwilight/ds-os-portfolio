@@ -109,6 +109,8 @@ export const Dock: React.FC<DockProps> = ({
                       : 'bg-white/10 hover:bg-white/15 border border-white/10'
                   }`}
                   aria-label={`Launch ${app.label}`}
+                  data-ph-capture-attribute-app-id={app.id}
+                  data-ph-capture-attribute-app-name={app.label}
                 >
                   <Icon className={`w-5 h-5 max-[768px]:w-4.5 max-[768px]:h-4.5 ${app.color} transition-transform ${isHovered ? 'scale-110' : ''}`} />
                 </button>

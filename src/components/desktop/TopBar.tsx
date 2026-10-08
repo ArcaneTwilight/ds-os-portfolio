@@ -76,6 +76,7 @@ export const TopBar: React.FC<TopBarProps> = ({
           }`}
           aria-expanded={isMenuOpen}
           aria-label="Spatial OS System Menu"
+          data-ph-capture-attribute-control-name="System menu"
         >
           {/* DS OS Symbol */}
           <div className="w-4 h-4 rounded-sm bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center shadow-sm">
@@ -104,6 +105,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           onClick={() => onOpenApp('projects')}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors"
           title="Open Projects"
+          data-ph-capture-attribute-app-id="projects"
+          data-ph-capture-attribute-app-name="Projects"
         >
           <FolderKanban className="w-3.5 h-3.5 text-sky-400" />
           <span>Projects</span>
@@ -113,6 +116,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           onClick={() => onOpenApp('experience')}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors"
           title="Open Experience"
+          data-ph-capture-attribute-app-id="experience"
+          data-ph-capture-attribute-app-name="Experience"
         >
           <Layers className="w-3.5 h-3.5 text-emerald-400" />
           <span>Experience</span>
@@ -122,6 +127,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           onClick={() => onOpenApp('files')}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors"
           title="Open Files"
+          data-ph-capture-attribute-app-id="files"
+          data-ph-capture-attribute-app-name="Files"
         >
           <FolderGit2 className="w-3.5 h-3.5 text-cyan-400" />
           <span>Files</span>
@@ -131,6 +138,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           onClick={() => onOpenApp('terminal')}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors"
           title="Open Terminal"
+          data-ph-capture-attribute-app-id="terminal"
+          data-ph-capture-attribute-app-name="Terminal"
         >
           <Terminal className="w-3.5 h-3.5 text-slate-300" />
           <span>Terminal</span>
@@ -148,7 +157,9 @@ export const TopBar: React.FC<TopBarProps> = ({
               : 'text-slate-400 hover:bg-white/10 hover:text-slate-200'
           }`}
           title={ambientAudio ? 'Mute background audio' : 'Play background audio'}
-          aria-label="Ambient Audio Toggle"
+          aria-label={ambientAudio ? 'Turn ambient audio off' : 'Turn ambient audio on'}
+          aria-pressed={ambientAudio}
+          data-ph-capture-attribute-control-name="Ambient audio"
         >
           {ambientAudio ? (
             <>
@@ -169,6 +180,7 @@ export const TopBar: React.FC<TopBarProps> = ({
           className="p-1.5 rounded-md text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
           title="Desktop Appearance & Customizer"
           aria-label="Customize Desktop"
+          data-ph-capture-attribute-control-name="Customize desktop"
         >
           <Sliders className="w-3.5 h-3.5" />
         </button>

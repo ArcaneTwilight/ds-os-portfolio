@@ -39,10 +39,10 @@ export const FilesApp: React.FC<FilesAppProps> = ({ onOpenApp }) => {
       <div className="h-10 px-4 bg-white/5 border-b border-white/10 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2 text-xs">
           <div className="flex items-center gap-1 text-slate-400">
-            <button className="p-1 rounded hover:bg-white/10 hover:text-white transition-colors">
+            <button type="button" disabled aria-label="Go back" className="p-1 rounded hover:bg-white/10 hover:text-white transition-colors disabled:cursor-not-allowed disabled:opacity-40">
               <ArrowLeft className="w-3.5 h-3.5" />
             </button>
-            <button className="p-1 rounded hover:bg-white/10 hover:text-white transition-colors opacity-40">
+            <button type="button" disabled aria-label="Go forward" className="p-1 rounded hover:bg-white/10 hover:text-white transition-colors opacity-40 disabled:cursor-not-allowed">
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -73,7 +73,7 @@ export const FilesApp: React.FC<FilesAppProps> = ({ onOpenApp }) => {
               Favorites
             </span>
             <div className="mt-1 space-y-0.5">
-              <button className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg bg-white/10 text-white text-xs font-medium text-left">
+              <button type="button" aria-current="page" className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg bg-white/10 text-white text-xs font-medium text-left">
                 <Home className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Workspace</span>
               </button>
@@ -133,8 +133,17 @@ export const FilesApp: React.FC<FilesAppProps> = ({ onOpenApp }) => {
                   }`}
                   role="button"
                   tabIndex={0}
+                  aria-label={file.name}
+                  data-ph-capture-attribute-item-name={file.name}
+                  data-ph-capture-attribute-item-type={file.type}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter') handleItemDoubleClick(file);
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleItemDoubleClick(file);
+                    } else if (e.key === ' ') {
+                      e.preventDefault();
+                      handleItemClick(file);
+                    }
                   }}
                 >
                   {/* File/Folder Icon Graphic */}

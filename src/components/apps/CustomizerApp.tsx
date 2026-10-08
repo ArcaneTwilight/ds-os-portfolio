@@ -94,6 +94,7 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
                     ? 'border-purple-400/80 bg-white/10 ring-2 ring-purple-400/30 shadow-lg'
                     : 'border-white/10 bg-white/5 hover:border-white/25 hover:bg-white/8'
                 }`}
+                aria-pressed={isSelected}
               >
                 {/* Wallpaper Preview Swatch */}
                 <div
@@ -138,6 +139,7 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
                     ? 'border-sky-400/70 bg-sky-500/10 ring-1 ring-sky-400/30'
                     : 'border-white/10 bg-white/5 hover:bg-white/8'
                 }`}
+                aria-pressed={isSelected}
               >
                 <div>
                   <div className="text-xs font-semibold text-white">{theme.name}</div>
@@ -173,6 +175,7 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
                       ? 'bg-emerald-500/20 border-emerald-400/50 text-emerald-200'
                       : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
                   }`}
+                  aria-pressed={isSelected}
                 >
                   {lvl.label}
                 </button>
@@ -194,6 +197,8 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
             value={settings.contrast}
             onChange={(e) => onUpdateSettings({ contrast: Number(e.target.value) })}
             className="w-full accent-sky-400 cursor-pointer"
+            aria-label="Atmospheric contrast"
+            aria-valuetext={`${settings.contrast}%`}
           />
           <div className="flex justify-between text-[10px] text-slate-400 font-mono">
             <span>80% Soft</span>
@@ -229,6 +234,7 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
               role="switch"
               aria-checked={settings.soundEffectsEnabled !== false}
               aria-label="Sound effects"
+              data-ph-capture-attribute-control-name="Sound effects"
             >
               <div className={`w-5 h-5 rounded-full bg-white transition-transform ${
                 settings.soundEffectsEnabled !== false ? 'translate-x-5' : 'translate-x-0'
@@ -250,6 +256,10 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
               className={`w-11 h-6 rounded-full transition-colors relative p-0.5 ${
                 settings.particles ? 'bg-purple-600' : 'bg-white/20'
               }`}
+              role="switch"
+              aria-checked={settings.particles}
+              aria-label="Ambient star particles"
+              data-ph-capture-attribute-control-name="Ambient star particles"
             >
               <div
                 className={`w-5 h-5 rounded-full bg-white transition-transform ${
@@ -293,6 +303,7 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
                   role="switch"
                   aria-checked={settings.ambientAudio}
                   aria-label="Ambient music"
+                  data-ph-capture-attribute-control-name="Ambient music"
                 >
                   <div
                     className={`w-5 h-5 rounded-full bg-white transition-transform ${
@@ -340,6 +351,10 @@ export const CustomizerApp: React.FC<CustomizerAppProps> = ({
               className={`w-11 h-6 rounded-full transition-colors relative p-0.5 ${
                 settings.showGrid ? 'bg-emerald-600' : 'bg-white/20'
               }`}
+              role="switch"
+              aria-checked={settings.showGrid}
+              aria-label="Spatial grid matrix"
+              data-ph-capture-attribute-control-name="Spatial grid matrix"
             >
               <div
                 className={`w-5 h-5 rounded-full bg-white transition-transform ${
