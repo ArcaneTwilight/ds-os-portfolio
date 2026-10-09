@@ -2,7 +2,7 @@ import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-const posthogKey = import.meta.env.VITE_POSTHOG_KEY;
+const posthogKey = import.meta.env.POSTHOG_KEY;
 const root = createRoot(document.getElementById('root')!);
 
 if (posthogKey) {
@@ -11,7 +11,7 @@ if (posthogKey) {
     <PostHogProvider
       apiKey={posthogKey}
       options={{
-        api_host: import.meta.env.VITE_POSTHOG_HOST || 'https://us.i.posthog.com',
+        api_host: import.meta.env.POSTHOG_HOST || 'https://us.i.posthog.com',
       }}
     >
       <App />

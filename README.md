@@ -40,7 +40,7 @@ Vite serves the app at http://localhost:3000.
 
 ### PostHog analytics
 
-Analytics are disabled unless `VITE_POSTHOG_KEY` is set. Copy `.env.example` to `.env.local` and add your PostHog project key. `VITE_POSTHOG_HOST` is optional and defaults to `https://us.i.posthog.com`; set it when using another PostHog region or a self-hosted instance. These are client-side Vite variables, so only use a PostHog project key intended for browser use.
+Analytics are disabled unless `POSTHOG_KEY` is set. Copy `.env.example` to `.env.local` and add your PostHog project key. `POSTHOG_HOST` is optional and defaults to `https://us.i.posthog.com`; set it when using another PostHog region or a self-hosted instance. Only these two settings are embedded in the client bundle, so use a PostHog project key intended for browser use and keep any query API credentials private.
 
 Available checks and build commands:
 
@@ -59,7 +59,7 @@ This is a static Vite app. The included `vercel.json` configures the SPA fallbac
    - Build command: `npm run build`
    - Output directory: `dist`
    - Install command: `npm install` (Vercel can also use the committed lockfile automatically)
-3. Deploy. Set `VITE_POSTHOG_KEY` in the deployment environment to enable PostHog analytics. Optionally set `VITE_POSTHOG_HOST` for a non-default PostHog host.
+3. Deploy. Set `POSTHOG_KEY` in the deployment environment to enable PostHog analytics. Optionally set `POSTHOG_HOST` for a non-default PostHog host.
 
 Do not commit local environment files or credentials. `.env.example` is a safe template; real `.env` files are ignored by Git.
 

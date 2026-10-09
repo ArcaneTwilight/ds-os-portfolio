@@ -2,6 +2,14 @@
 
 Notable project changes are recorded here. Add an entry for every project-change commit, following the policy in [project-map.md](project-map.md#changelog-and-versioning).
 
+## [1.4.1] - 2026-10-09
+
+### Changed
+- Renamed PostHog environment variables to remove Vite's public `VITE_` prefix and explicitly expose only the browser-safe project key and host.
+
+### Documentation
+- Updated environment setup and deployment guidance for the renamed PostHog settings.
+
 ## [1.4.0] - 2026-10-08
 
 ### Changed
